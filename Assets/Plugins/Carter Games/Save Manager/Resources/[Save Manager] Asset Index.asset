@@ -10,19 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 333840ffd80a4c846a67450ce9700e91, type: 3}
-  m_Name: Asset Index
+  m_Name: '[Save Manager] Asset Index'
   m_EditorClassIdentifier: 
   assets:
     list:
-    - key: CarterGames.Assets.SaveManager.EncryptionKeyAsset
-      value:
-      - {fileID: 11400000, guid: 41a478b5843501e4babe9c1f14610430, type: 2}
-    - key: CarterGames.Assets.SaveManager.AssetGlobalRuntimeSettings
-      value:
-      - {fileID: 11400000, guid: 65c21217e9110144ca81b4ba08c5690d, type: 2}
-    - key: CarterGames.Assets.SaveManager.SaveData
-      value:
-      - {fileID: 11400000, guid: 393ff1cb7117d2243b72b2c27f43e59f, type: 2}
     - key: CarterGames.Assets.SaveManager.Demo.ExampleSaveObject
       value:
       - {fileID: 11400000, guid: 82e2e69aec1bee748b7a19fdff4d4e9a, type: 2}
+    - key: CarterGames.Assets.SaveManager.EncryptionKeyAsset
+      value:
+      - {fileID: 11400000, guid: ca7cce8677df6144681b21f70b2f711a, type: 2}
+    - key: CarterGames.Assets.SaveManager.AssetGlobalRuntimeSettings
+      value:
+      - {fileID: 11400000, guid: 5483b77fa1319f5449e7ad0138b0bd5f, type: 2}
+    - key: CarterGames.Assets.SaveManager.SaveData
+      value:
+      - {fileID: 11400000, guid: 72284b9d2ebb0e0499a8f663ac388fe4, type: 2}
+    - key: CarterGames.Assets.SaveManager.Editor.SaveProfilesStore
+      value:
+      - {fileID: 11400000, guid: c1312521fbdec4743bb857fa304f1ffa, type: 2}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 491aaa4ed61e5904aacc7aeedbbbe6eb, type: 3}
-  m_Name: Encryption Key
+  m_Name: '[Save Manager] Encryption Key Asset'
   m_EditorClassIdentifier: 
   saveEncryptionKey: 
   keySize: 256

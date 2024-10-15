@@ -29,7 +29,7 @@ namespace CarterGames.Assets.SaveManager.Editor
 {
     [Serializable]
     [CreateAssetMenu(fileName = "Save Profile Store", menuName = "Carter Games/Save Manager/Save Profile Store", order = 6)]
-    public sealed class SaveProfilesStore : ScriptableObject
+    public sealed class SaveProfilesStore : SaveManagerAsset
     { 
         [SerializeField] private List<TextAsset> profiles; 
         
