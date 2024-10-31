@@ -1,0 +1,23 @@
+﻿title: Start_Test
+tags:
+position: -99,79
+---
+Test: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+    -> Hello?
+        <<jump Right>>
+    -> World?
+        <<jump Wrong>>
+===
+title: Wrong
+tags:
+position: 287,-35
+---
+Test: You are fucking wrong
+<<jump Start_Test>>
+===
+title: Right
+tags:
+position: 293,156
+---
+Test: You are fucking right
+===

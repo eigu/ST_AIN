@@ -1,0 +1,25 @@
+﻿title: Start_Cube1
+tags:
+position: -99,79
+---
+<<declare $speaker2 = "Cube1">>
+{$speaker1}: Hello, how ya doin?
+    -> Im fine.
+        {$speaker1}: I'm going to turn blue now.
+        <<turn_blue>>
+    -> Im tired.
+        {$speaker1}: I'm going to turn red now.
+        <<turn_red>>
+        <<cube1_end>>
+===
+
+title: Start_Cube2
+tags:
+position: -99,79
+---
+<<declare $speaker1 = "Cube2">>
+{$speaker2}: Hey little guy.
+{$speaker2}: Actually, I have nothing to say.
+{$speaker2}: You better talk to that other guy.
+<<cube2_end>>
+===
