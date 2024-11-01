@@ -3,17 +3,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, PlayerInputActions.IUIActions
 {
-    [Header("Input Event Manager")]
-    public InputEventManager inputEventManager;
-
     private PlayerInputActions _playerInputActions;
-    
-    //DDOL
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
 
     private void OnEnable()
     {
@@ -40,14 +30,14 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        inputEventManager.Move(context.ReadValue<Vector2>());
+        GameEventsManager.Instance.InputEvents.Move(context.ReadValue<Vector2>());
     }
 
     public void OnInventory(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.OpenInventory();
+            GameEventsManager.Instance.InputEvents.OpenInventory();
             SetUI();
         }
     }
@@ -56,14 +46,14 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.CloseInventory();
+            GameEventsManager.Instance.InputEvents.CloseInventory();
             SetGameplay();
         }
     }
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        inputEventManager.Look(context.ReadValue<Vector2>());
+        GameEventsManager.Instance.InputEvents.Look(context.ReadValue<Vector2>());
     }
 
 
@@ -71,11 +61,11 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.Jump(true);
+            GameEventsManager.Instance.InputEvents.Jump(true);
         }
         if (context.phase == InputActionPhase.Canceled)
         {
-            inputEventManager.Jump(false);
+            GameEventsManager.Instance.InputEvents.Jump(false);
         }
     }
 
@@ -83,17 +73,17 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.Crouch(true);
+            GameEventsManager.Instance.InputEvents.Crouch(true);
         }
         
         if (context.phase == InputActionPhase.Performed)
         {
-            inputEventManager.Crouch(true);
+            GameEventsManager.Instance.InputEvents.Crouch(true);
         }
 
         if (context.phase == InputActionPhase.Canceled)
         {
-            inputEventManager.Crouch(false);
+            GameEventsManager.Instance.InputEvents.Crouch(false);
         }
     }
 
@@ -101,7 +91,7 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.Interact();
+            GameEventsManager.Instance.InputEvents.Interact();
         }
     }
 
@@ -109,17 +99,17 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.Cursor(true);
+            GameEventsManager.Instance.InputEvents.Cursor(true);
         }
         
         if (context.phase == InputActionPhase.Performed)
         {
-            inputEventManager.Cursor(true);
+            GameEventsManager.Instance.InputEvents.Cursor(true);
         }
 
         if (context.phase == InputActionPhase.Canceled)
         {
-            inputEventManager.Cursor(false);
+            GameEventsManager.Instance.InputEvents.Cursor(false);
         }
     }
 
@@ -127,7 +117,7 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.SwitchView();
+            GameEventsManager.Instance.InputEvents.SwitchView();
         }
     }
 
@@ -135,17 +125,17 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.Aim(true);
+            GameEventsManager.Instance.InputEvents.Aim(true);
         }
         
         if (context.phase == InputActionPhase.Performed)
         {
-            inputEventManager.Aim(true);
+            GameEventsManager.Instance.InputEvents.Aim(true);
         }
 
         if (context.phase == InputActionPhase.Canceled)
         {
-            inputEventManager.Aim(false);
+            GameEventsManager.Instance.InputEvents.Aim(false);
         }
     }
 
@@ -153,7 +143,7 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.Shoot();
+            GameEventsManager.Instance.InputEvents.Shoot();
         }
     }
 
@@ -161,11 +151,11 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.Sprint(true);
+            GameEventsManager.Instance.InputEvents.Sprint(true);
         }
         if (context.phase == InputActionPhase.Canceled)
         {
-            inputEventManager.Sprint(false);
+            GameEventsManager.Instance.InputEvents.Sprint(false);
         }
     }
 
@@ -173,7 +163,7 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.Resume();
+            GameEventsManager.Instance.InputEvents.Resume();
             SetGameplay();
         }
     }
@@ -182,7 +172,7 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            inputEventManager.Pause();
+            GameEventsManager.Instance.InputEvents.Pause();
             SetUI();
         }
     }
