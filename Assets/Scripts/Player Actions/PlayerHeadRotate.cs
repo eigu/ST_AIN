@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerHeadRotate : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class PlayerHeadRotate : MonoBehaviour
     [SerializeField] private Transform head;
     [SerializeField] private float lookAtDistance;
     [SerializeField] private float lookSmooth;
+    [SerializeField] private MultiAimConstraint _multiAimConstraint;
     private Vector3 headTargetPosition;
+   
 
     public PlayerLook playerLook;
 
@@ -24,17 +27,19 @@ public class PlayerHeadRotate : MonoBehaviour
     {
         Vector3 lookDirection = playerLook.CameraTargetObject.transform.rotation * Vector3.forward;
         float angle = Vector3.Angle(head.forward, lookDirection);
+        headTargetPosition = head.position + lookDirection * lookAtDistance;
+        headLookAt.position = Vector3.Lerp(headLookAt.position, headTargetPosition, Time.deltaTime * lookSmooth);
 
         // Check if the angle is greater than 90 degrees
         if (angle < 90f)
         {
-            headTargetPosition = head.position + lookDirection * lookAtDistance;
+            _multiAimConstraint.weight = Mathf.Lerp(_multiAimConstraint.weight, 1f, Time.deltaTime * lookSmooth);
         }
         else
         {
-            headTargetPosition = head.position + head.forward * lookAtDistance;
+            _multiAimConstraint.weight = Mathf.Lerp(_multiAimConstraint.weight, 0f, Time.deltaTime * lookSmooth);
         }
 
-        headLookAt.position = Vector3.Lerp(headLookAt.position, headTargetPosition, Time.deltaTime * lookSmooth);
+        
     }
 }
