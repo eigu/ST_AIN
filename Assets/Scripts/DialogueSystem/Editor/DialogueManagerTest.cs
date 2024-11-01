@@ -31,7 +31,7 @@ public class DialogueCubeTestTest : Editor
 
         if (GUILayout.Button("Test"))
         {
-            cube.Talk();
+            cube.StartDialogue();
         }
         
         

@@ -14,15 +14,18 @@ public class DialogueCubeTest : MonoBehaviour
     
     private void Start()
     {
+        
+    }
+
+    public void StartDialogue()
+    {
+        
         foreach (var commandHandler in commandHandlers)
         {
             DialogueManager.Instance.dialogueRunner.AddCommandHandler(commandHandler.commandName, () => commandHandler.del.Invoke());
             //make this one by one so that YarnSpinner recognize the commandName being mentioned
         }
-    }
-
-    public void Talk()
-    {
+        
         bark.StopBark();
         DialogueManager.Instance.OpenDialogue(startNodeName);
     }
@@ -40,11 +43,17 @@ public class DialogueCubeTest : MonoBehaviour
     public void EndDialogue()
     {
         bark.StartShowingBark();
+        
+        foreach (var commandHandler in commandHandlers)
+        {
+            DialogueManager.Instance.dialogueRunner.RemoveCommandHandler(commandHandler.commandName);
+        }
     }
     
     public void HelloWorld()
     {
         Debug.Log("Hello world!");
+
     }
     
     
