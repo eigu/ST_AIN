@@ -56,6 +56,7 @@ public class Quest
             qs.InitializeQuestStep(info.ID, _currentQuestStepIndex, _questStepData[_currentQuestStepIndex].state);
         }
     }
+    
 
     private GameObject GetCurrentQuestStepPrefab()
     {

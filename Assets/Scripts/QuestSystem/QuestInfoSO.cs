@@ -10,6 +10,7 @@ public class QuestInfoSO : ScriptableObject
 
     [Header("General")] 
     public string displayName;
+    public QuestType questType;
     
     [Header("Requirements")] 
     //add requirements like chapter requirement

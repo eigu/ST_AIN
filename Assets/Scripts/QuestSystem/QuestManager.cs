@@ -88,6 +88,7 @@ public class QuestManager : MonoBehaviour
     private void AdvanceQuest(string id)
     {
         Quest quest = GetQuestByID(id);
+
         quest.MoveToNextStep();
 
         if (quest.CurrentStepExists())
@@ -98,6 +99,7 @@ public class QuestManager : MonoBehaviour
         {
             ChangeQuestState(quest.info.ID, QuestState.CanFinish);
         }
+        
     }
     
     private void FinishQuest(string id)

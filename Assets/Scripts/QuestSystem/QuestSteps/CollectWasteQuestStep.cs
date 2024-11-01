@@ -6,8 +6,8 @@ using UnityEngine;
 // will be put on a prefab so that it can track the step
 public class CollectWasteQuestStep : QuestStep
 {
-    private TestWasteType _type;
-    private int _wasteToCollect = 5;
+    [SerializeField] private TestWasteType _type;
+    [SerializeField] private int _wasteToCollect = 5;
     private int _wasteCollected = 0;
 
     private void OnEnable()

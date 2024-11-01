@@ -5,8 +5,9 @@ using UnityEngine;
 
 public abstract class QuestStep : MonoBehaviour
 {
+    [Header("Base Quest Step")] 
+    [SerializeField] private QuestStepType _questStepType;
     private bool _isFinished = false;
-
     private string _questID;
     private int _stepIndex;
 
