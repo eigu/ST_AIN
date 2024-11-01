@@ -13,10 +13,7 @@ public class PlayerLook : MonoBehaviour
         ThirdPersonAiming,
         TopDown
     }
-    
-    [Header("Input Event Manager")]
-    public InputEventManager inputEventManager;
-    
+
     [Header("Control Parameters")]
     [SerializeField] private bool canLook = true;
     [SerializeField] private bool canSwitchView = true;
@@ -76,18 +73,18 @@ public class PlayerLook : MonoBehaviour
 
     private void OnEnable()
     {
-	    inputEventManager.OnLookEvent += MouseInputHandler;
-	    inputEventManager.OnSwitchViewEvent += SwitchViewHandler;
-	    inputEventManager.OnAimEvent += AimInputHandler;
-	    inputEventManager.OnCursorEvent += CursorHandler;
+	    GameEventsManager.Instance.InputEvents.OnLookEvent += MouseInputHandler;
+	    GameEventsManager.Instance.InputEvents.OnSwitchViewEvent += SwitchViewHandler;
+	    GameEventsManager.Instance.InputEvents.OnAimEvent += AimInputHandler;
+	    GameEventsManager.Instance.InputEvents.OnCursorEvent += CursorHandler;
     }
     
     private void OnDisable()
     {
-	    inputEventManager.OnLookEvent -= MouseInputHandler;
-	    inputEventManager.OnSwitchViewEvent -= SwitchViewHandler;
-	    inputEventManager.OnAimEvent -= AimInputHandler;
-	    inputEventManager.OnCursorEvent -= CursorHandler;
+	    GameEventsManager.Instance.InputEvents.OnLookEvent -= MouseInputHandler;
+	    GameEventsManager.Instance.InputEvents.OnSwitchViewEvent -= SwitchViewHandler;
+	    GameEventsManager.Instance.InputEvents.OnAimEvent -= AimInputHandler;
+	    GameEventsManager.Instance.InputEvents.OnCursorEvent -= CursorHandler;
     }
 
     private void Awake()
