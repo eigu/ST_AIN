@@ -18,14 +18,13 @@ public class GameEventsManager : MonoBehaviour
     {
         if (_instance == null)
         {
-            DontDestroyOnLoad(gameObject);
             _instance = this;
 
             InputEvents = new InputEvents();
         }
         else
         {
-            Destroy(this);
+            Debug.LogError("Found more than one Game Events Manager in the scene.");
         }
     }
 
