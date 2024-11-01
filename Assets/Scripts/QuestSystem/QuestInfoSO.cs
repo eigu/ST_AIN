@@ -19,7 +19,7 @@ public class QuestInfoSO : ScriptableObject
     public GameObject[] questStepsPrefabs;
 
     [Header("Rewards")]
-    public int money;
+    public int moneyReward;
     // or any other saint 1 modules
     
     private void OnValidate()

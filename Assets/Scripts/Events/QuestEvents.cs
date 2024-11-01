@@ -6,6 +6,8 @@ public class QuestEvents
     public event Action<string> OnAdvanceQuestEvent;
     public event Action<string> OnFinishQuestEvent;
     public event Action<Quest> OnQuestStateChangeEvent;
+    
+    public event Action<string, int, QuestStepData> OnQuestStepDataChangeEvent;
 
     public void StartQuest(string id)
     {
@@ -26,4 +28,11 @@ public class QuestEvents
     {
         OnQuestStateChangeEvent?.Invoke(quest);
     }
+    
+    public void QuestStepDataChange(string id, int stepIndex, QuestStepData questStepData)
+    {
+        OnQuestStepDataChangeEvent?.Invoke(id, stepIndex, questStepData);
+    }
+    
+    
 }

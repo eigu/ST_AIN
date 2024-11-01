@@ -5,5 +5,5 @@ public enum QuestState
     CanStart, // reqs met
     InProgress, // started
     CanFinish, // steps done
-    Finished // claimed
+    Finished // claimed reward
 }

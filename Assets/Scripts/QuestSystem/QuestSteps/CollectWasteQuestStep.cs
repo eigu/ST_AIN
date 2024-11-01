@@ -27,12 +27,14 @@ public class CollectWasteQuestStep : QuestStep
             if (_type == TestWasteType.Any)
             {
                 _wasteCollected++;
+                UpdateState();
             }
             else
             {
                 if (type == _type)
                 {
                     _wasteCollected++;
+                    UpdateState();
                 }
             }
         }
@@ -41,6 +43,18 @@ public class CollectWasteQuestStep : QuestStep
         {
             FinishQuestStep();
         }
+    }
+
+    private void UpdateState()
+    {
+        string state = _wasteCollected.ToString();
+        ChangeState(state);
+    }
+
+    protected override void SetQuestStepState(string state)
+    {
+        _wasteCollected = Int32.Parse(state);
+        UpdateState();
     }
 }
 
