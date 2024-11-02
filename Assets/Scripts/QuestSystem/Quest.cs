@@ -7,6 +7,7 @@ public class Quest
     public QuestState state;
 
     private int _currentQuestStepIndex;
+    private int _completedStepCount;
     private QuestStepData[] _questStepData;
 
     public Quest(QuestInfoSO questInfo)
@@ -40,6 +41,11 @@ public class Quest
         _currentQuestStepIndex++;
     }
 
+    public void IncreaseDoneStepCount()
+    {
+        _completedStepCount++;
+    }
+
     public int GetCurrentQuestStepIndex()
     {
         return _currentQuestStepIndex;
@@ -62,14 +68,34 @@ public class Quest
         }
     }
     
-
-    private GameObject GetCurrentQuestStepPrefab()
+    public void InstantiateAllQuestStep(Transform parentTransform)
     {
+
+        for (int i = 0; i < _questStepData.Length; i++)
+        {
+            GameObject questStepPrefab = GetCurrentQuestStepPrefab(i);
+
+            if (questStepPrefab != null)
+            {
+                //can be pooled
+                QuestStep qs = Object.Instantiate(questStepPrefab, parentTransform).GetComponent<QuestStep>();
+                qs.InitializeQuestStep(info.ID, i, _questStepData[i].state);
+            }
+        }
+
+        
+    }
+    
+
+    private GameObject GetCurrentQuestStepPrefab(int? index = null)
+    {
+        int currentQuestStepIndex = index.HasValue ? index.Value : _currentQuestStepIndex;
+        
         GameObject questStepPrefab = null;
 
         if (CurrentStepExists())
         {
-            questStepPrefab = info.questStepsPrefabs[_currentQuestStepIndex];
+            questStepPrefab = info.questStepsPrefabs[currentQuestStepIndex];
         }
         else
         {
@@ -95,5 +121,10 @@ public class Quest
     public QuestData GetQuestData()
     {
         return new QuestData(state, _currentQuestStepIndex, _questStepData);
+    }
+
+    public bool AreAllStepsDone()
+    { 
+        return (_completedStepCount >= info.questStepsPrefabs.Length);
     }
 }

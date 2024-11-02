@@ -6,32 +6,19 @@ using UnityEngine;
 
 public class QuestUI : MonoBehaviour
 {
+    [Header("Quests")] 
+    private Dictionary<string, QuestUIData> _questUIData = new Dictionary<string, QuestUIData>();
+    
     [Header("MainQuest")] 
-    [SerializeField] private Transform _mainQuestParent;
-    [SerializeField] private TextMeshProUGUI _mainQuestTitle;
-    [SerializeField] private Transform _mainQuestStepParent;
-    private GameObject _mainQuestStepTemplate;
-    private string _mainQuestID;
-    private List<TextMeshProUGUI> _mainStepsTMPs;
+    [SerializeField] private GameObject _mainQuestHolderPrefab;
+    [SerializeField] private GameObject _mainQuestStepPrefab;
+    [SerializeField] private Transform _mainQuestsParent; //parent
 
     [Header("SideQuest")] 
-    [SerializeField] private TextMeshProUGUI _sideQuestTitle;
-    [SerializeField] private Transform _sideQuestStepParent;
-    private GameObject _sideQuestStepTemplate;
+    [SerializeField] private GameObject _sideQuestHolderPrefab;
+    [SerializeField] private GameObject _sideQuestStepPrefab;
+    [SerializeField] private Transform _sideQuestsParent; //parent
     
-    
-
-    private void Awake()
-    {
-        GameObject mainQuestStepTemplate = _mainQuestStepParent.GetChild(0).gameObject;
-        _mainQuestStepTemplate = mainQuestStepTemplate;
-        mainQuestStepTemplate.SetActive(false);
-        
-        GameObject sideQuestStepTemplate = _sideQuestStepParent.GetChild(0).gameObject;
-        _sideQuestStepTemplate = sideQuestStepTemplate;
-        sideQuestStepTemplate.SetActive(false);
-    }
-
     private void OnEnable()
     {
         GameEventsManager.Instance.QuestEvents.OnStartQuestUIEvent += InitializeQuestUI;
@@ -46,28 +33,36 @@ public class QuestUI : MonoBehaviour
         GameEventsManager.Instance.QuestEvents.OnFinishQuestEvent -= RemoveQuestUI;
     }
 
-    private void InitializeQuestUI(string id, string text, int stepCount, QuestType type)
+    private void InitializeQuestUI(string id, string text, bool isSequential, int stepCount, QuestType type)
     {
-        if (type == QuestType.MainQuest)
+        switch (type)
         {
-            _mainQuestParent.gameObject.SetActive(true);
-            _mainQuestID = id;
-            _mainQuestTitle.text = text;
-            _mainStepsTMPs = new List<TextMeshProUGUI>();
-            
-            //instantiate steps
-            for (int i = 0; i < stepCount; i++)
-            {
-                _mainStepsTMPs.Add(CreateStepInstanceAndEnable(_mainQuestStepTemplate, _mainQuestStepParent));
-            }
-            
+            case QuestType.MainQuest:
+                CreateQuestContainer(_mainQuestHolderPrefab, _mainQuestsParent, id, text, isSequential);
+                PopulateQuestSteps(id, stepCount, _mainQuestStepPrefab);
+                break;
+            case QuestType.SideQuest:
+                CreateQuestContainer(_sideQuestHolderPrefab, _sideQuestsParent, id, text, isSequential);
+                PopulateQuestSteps(id, stepCount, _sideQuestStepPrefab);
+                break;
         }
+    }
 
-        if (type == QuestType.SideQuest)
-        {
-            _sideQuestTitle.text = text;
+    private void CreateQuestContainer(GameObject questHolderPrefab, Transform questsParent, string id, string text, bool isSequential)
+    {
+        GameObject container = Instantiate(questHolderPrefab, questsParent);
+
+        container.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = text;
             
-            //instantiate steps
+        _questUIData.Add(id, new QuestUIData {holder = container,stepHolder = container.transform.GetChild(1) ,isSequential = isSequential, questStepsTMP = new List<TextMeshProUGUI>()});
+
+    }
+    
+    private void PopulateQuestSteps(string id, int stepCount, GameObject questStepPrefab)
+    {
+        for (int i = 0; i < stepCount; i++)
+        {
+            _questUIData[id].questStepsTMP.Add(CreateStepInstanceAndEnable(questStepPrefab, _questUIData[id].stepHolder));
         }
     }
 
@@ -78,29 +73,38 @@ public class QuestUI : MonoBehaviour
         return o.GetComponent<TextMeshProUGUI>();
     }
     
-    private void UpdateStepUIText(string id, int index, string text, bool isFinished, QuestType type)
+    private void UpdateStepUIText(string id, int index, string text, bool isFinished)
     {
-        if (type == QuestType.MainQuest)
+        if (!_questUIData.ContainsKey(id)) return;
+        
+        var questData = _questUIData[id];
+
+        if (questData.isSequential)
         {
-            _mainStepsTMPs[index].gameObject.SetActive(!isFinished);
-            _mainStepsTMPs[index].text = text;
+            questData.questStepsTMP[index].gameObject.SetActive(!isFinished);
+        }
+        else
+        {
+            questData.questStepsTMP[index].gameObject.SetActive(true);
         }
 
-        if (type == QuestType.SideQuest)
-        {
-            
-        }
+        questData.questStepsTMP[index].text = text;
         
     }
     
     private void RemoveQuestUI(string id)
     {
-        if (id == _mainQuestID)
-        {
-            _mainQuestParent.gameObject.SetActive(false);
-        }
+        Destroy(_questUIData[id].holder.gameObject);
+        _questUIData.Remove(id);
     }
 
-    
+    private struct QuestUIData
+    {
+        public GameObject holder;
+        public Transform stepHolder;
+        public bool isSequential;
+        public List<TextMeshProUGUI> questStepsTMP;
 
+    }
+    
 }

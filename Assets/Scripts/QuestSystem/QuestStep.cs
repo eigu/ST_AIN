@@ -19,6 +19,8 @@ public abstract class QuestStep : MonoBehaviour
         {
             SetQuestStepState(questStepState);
         }
+
+        UpdateState();
     }
     
     protected void FinishQuestStep()
@@ -37,4 +39,5 @@ public abstract class QuestStep : MonoBehaviour
     }
 
     protected abstract void SetQuestStepState(string state);
+    protected abstract void UpdateState();
 }

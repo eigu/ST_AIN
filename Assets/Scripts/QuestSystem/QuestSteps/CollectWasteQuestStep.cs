@@ -20,11 +20,6 @@ public class CollectWasteQuestStep : QuestStep
         GameEventsManager.Instance.PlayerInteractEvents.OnWastePickUpEvent -= WasteCollected;
     }
 
-    private void Start()
-    {
-        UpdateState();
-    }
-
     private void WasteCollected(TestWasteType type)
     {
         if (_wasteCollected < _wasteToCollect)
@@ -50,10 +45,10 @@ public class CollectWasteQuestStep : QuestStep
         UpdateState();
     }
 
-    private void UpdateState()
+    protected override void UpdateState()
     {
         string state = _wasteCollected.ToString();
-        string stateDisplayText = $"Collect waste: {_wasteCollected}/{_wasteToCollect}";
+        string stateDisplayText = $"Collect {_type} waste: {_wasteCollected}/{_wasteToCollect}";
         ChangeState(state,stateDisplayText);
     }
 

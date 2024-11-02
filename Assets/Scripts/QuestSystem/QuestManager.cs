@@ -81,27 +81,53 @@ public class QuestManager : MonoBehaviour
     private void StartQuest(string id)
     {
         Quest quest = GetQuestByID(id);
-        GameEventsManager.Instance.QuestEvents.StartQuestUI(quest.info.ID, quest.info.displayName, quest.info.questStepsPrefabs.Length , quest.info.questType);
-        quest.InstantiateCurrentQuestStep(transform);
+        GameEventsManager.Instance.QuestEvents.StartQuestUI(quest.info.ID, quest.info.displayName, quest.info.isSequential, quest.info.questStepsPrefabs.Length , quest.info.questType);
+
+        if (quest.info.isSequential)
+        {
+            quest.InstantiateCurrentQuestStep(transform);
+        }
+        else
+        {
+            quest.InstantiateAllQuestStep(transform);
+        }
+
+        
         ChangeQuestState(quest.info.ID, QuestState.InProgress);
     }
     
     private void AdvanceQuest(string id)
     {
         Quest quest = GetQuestByID(id);
-
-        quest.MoveToNextStep();
-
-        if (quest.CurrentStepExists())
+        
+        if (quest.info.isSequential)
         {
-            quest.InstantiateCurrentQuestStep(transform);
+            quest.MoveToNextStep();
+
+            if (quest.CurrentStepExists())
+            {
+                quest.InstantiateCurrentQuestStep(transform);
+            }
+            else
+            {
+                ChangeQuestState(quest.info.ID, QuestState.Finished);
+                GameEventsManager.Instance.QuestEvents.FinishQuest(quest.info.ID);
+                Debug.Log($"Quest \"{quest.info.displayName}\" is finished, you can claim your rewards now.");
+            }
         }
         else
         {
-            ChangeQuestState(quest.info.ID, QuestState.Finished);
-            GameEventsManager.Instance.QuestEvents.FinishQuest(quest.info.ID);
-            Debug.Log($"Quest \"{quest.info.displayName}\" is finished, you can claim your rewards now.");
+            quest.IncreaseDoneStepCount();
+            
+            if (quest.AreAllStepsDone())
+            {
+                ChangeQuestState(quest.info.ID, QuestState.Finished);
+                GameEventsManager.Instance.QuestEvents.FinishQuest(quest.info.ID);
+                Debug.Log($"Quest \"{quest.info.displayName}\" is finished, you can claim your rewards now.");
+            }
         }
+
+        
         
     }
     
@@ -123,7 +149,7 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestByID(id);
         quest.StoreQuestStepData(questStepData, stepIndex);
         ChangeQuestState(id, quest.state);
-        GameEventsManager.Instance.QuestEvents.QuestStepDataChangeUI(id, stepIndex, questStepData.stateTextDisplay, isFinished, quest.info.questType);
+        GameEventsManager.Instance.QuestEvents.QuestStepDataChangeUI(id, stepIndex, questStepData.stateTextDisplay, isFinished);
     }
 
     private Dictionary<string, Quest> CreateQuestMap()

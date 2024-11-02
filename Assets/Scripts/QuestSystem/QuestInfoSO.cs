@@ -11,6 +11,7 @@ public class QuestInfoSO : ScriptableObject
     [Header("General")] 
     public string displayName;
     public QuestType questType;
+    public bool isSequential;
     
     [Header("Requirements")] 
     //add requirements like chapter requirement

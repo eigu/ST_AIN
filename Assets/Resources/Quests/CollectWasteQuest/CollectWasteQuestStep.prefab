@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _questStepType: 1
-  _type: 0
-  _wasteToCollect: 2
+  _type: 1
+  _wasteToCollect: 1
