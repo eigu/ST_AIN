@@ -98,7 +98,8 @@ public class QuestManager : MonoBehaviour
         }
         else
         {
-            ChangeQuestState(quest.info.ID, QuestState.CanFinish);
+            ChangeQuestState(quest.info.ID, QuestState.Finished);
+            GameEventsManager.Instance.QuestEvents.FinishQuest(quest.info.ID);
             Debug.Log($"Quest \"{quest.info.displayName}\" is finished, you can claim your rewards now.");
         }
         

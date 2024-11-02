@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4592546357979365370}
   - component: {fileID: 8821848882398499184}
   m_Layer: 0
-  m_Name: CollectWasteQuestStep
+  m_Name: CollectWasteQuestStep 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _questStepType: 1
   _type: 0
-  _wasteToCollect: 2
+  _wasteToCollect: 8

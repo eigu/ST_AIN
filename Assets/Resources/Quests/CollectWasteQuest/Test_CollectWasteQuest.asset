@@ -18,5 +18,6 @@ MonoBehaviour:
   questPrerequisites: []
   questStepsPrefabs:
   - {fileID: 3025596795742366738, guid: 0f79a100427ca5d4c95dbabccdb90946, type: 3}
-  - {fileID: 3025596795742366738, guid: 0f79a100427ca5d4c95dbabccdb90946, type: 3}
+  - {fileID: 3025596795742366738, guid: 9b93e9144b052544588fcefab8b8e73b, type: 3}
+  - {fileID: 3025596795742366738, guid: f95e2a21202e1034f9e879fada858bc2, type: 3}
   moneyReward: 0

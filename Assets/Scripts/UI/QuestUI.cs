@@ -36,12 +36,14 @@ public class QuestUI : MonoBehaviour
     {
         GameEventsManager.Instance.QuestEvents.OnStartQuestUIEvent += InitializeQuestUI;
         GameEventsManager.Instance.QuestEvents.OnQuestStepDataChangeUIEvent += UpdateStepUIText;
+        GameEventsManager.Instance.QuestEvents.OnFinishQuestEvent += RemoveQuestUI;
     }
     
     private void OnDisable()
     {
         GameEventsManager.Instance.QuestEvents.OnStartQuestUIEvent -= InitializeQuestUI;
         GameEventsManager.Instance.QuestEvents.OnQuestStepDataChangeUIEvent -= UpdateStepUIText;
+        GameEventsManager.Instance.QuestEvents.OnFinishQuestEvent -= RemoveQuestUI;
     }
 
     private void InitializeQuestUI(string id, string text, int stepCount, QuestType type)
@@ -80,24 +82,8 @@ public class QuestUI : MonoBehaviour
     {
         if (type == QuestType.MainQuest)
         {
-            if (isFinished)
-            {
-                foreach (var o in _mainStepsTMPs)
-                {
-                    if (o.gameObject.activeInHierarchy)
-                    {
-                        break;
-                    }
-
-                    _mainQuestParent.gameObject.SetActive(false);
-                    break;
-                }
-            }
-            
             _mainStepsTMPs[index].gameObject.SetActive(!isFinished);
             _mainStepsTMPs[index].text = text;
-
-            
         }
 
         if (type == QuestType.SideQuest)
@@ -105,6 +91,14 @@ public class QuestUI : MonoBehaviour
             
         }
         
+    }
+    
+    private void RemoveQuestUI(string id)
+    {
+        if (id == _mainQuestID)
+        {
+            _mainQuestParent.gameObject.SetActive(false);
+        }
     }
 
     
