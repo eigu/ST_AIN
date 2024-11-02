@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a69604763d764f489cbe17320c800e2, type: 3}
-  m_Name: Test_CollectWasteQuest 1
+  m_Name: Test_GoToDestination
   m_EditorClassIdentifier: 
-  <ID>k__BackingField: Test_CollectWasteQuest 1
-  displayName: Collect Waste
-  questType: 2
-  isSequential: 1
+  <ID>k__BackingField: Test_GoToDestination
+  displayName: Main Quest #1
+  questType: 1
+  isSequential: 0
   questPrerequisites: []
   questStepsPrefabs:
-  - {fileID: 3025596795742366738, guid: 0f79a100427ca5d4c95dbabccdb90946, type: 3}
-  - {fileID: 3025596795742366738, guid: 9b93e9144b052544588fcefab8b8e73b, type: 3}
+  - {fileID: 3789328297970302861, guid: b42b61d4a366cb3409f9c7c2da807c87, type: 3}
   moneyReward: 0

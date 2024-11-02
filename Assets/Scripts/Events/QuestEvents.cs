@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class QuestEvents
 {
@@ -11,6 +12,11 @@ public class QuestEvents
     
     public event Action<string, string, bool, int, QuestType> OnStartQuestUIEvent;
     public event Action<string, int, string, bool> OnQuestStepDataChangeUIEvent;
+    
+    public event Action<string> OnReachDestinationEvent;
+    public event Action<string, Transform> OnSendDestinationTargetEvent;
+    
+    public event Action<string> OnFindDestinationTargetEvent;
 
     public void StartQuest(string id)
     {
@@ -46,7 +52,21 @@ public class QuestEvents
     {
         OnQuestStepDataChangeUIEvent?.Invoke(id, stepIndex, questStepTextDisplay, isFinished);
     }
+
+    public void ReachDestination(string destinationIdentifier)
+    {
+        OnReachDestinationEvent?.Invoke(destinationIdentifier);
+    }
     
+    public void SendDestinationTarget(string destinationIdentifier, Transform target)
+    {
+        OnSendDestinationTargetEvent?.Invoke(destinationIdentifier, target);
+    }
+    
+    public void FindDestinationTarget(string destinationIdentifier)
+    {
+        OnFindDestinationTargetEvent?.Invoke(destinationIdentifier);
+    }
     
     
 }
