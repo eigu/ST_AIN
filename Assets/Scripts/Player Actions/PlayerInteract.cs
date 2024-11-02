@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-	[Header("Input Event Manager")]
-	public InputEventManager inputEventManager;
-	
 	[SerializeField] private PlayerMovement playerMovement;
 	
 	[SerializeField] private bool canInteract = true;
@@ -27,12 +24,12 @@ public class PlayerInteract : MonoBehaviour
     
     private void OnEnable()
     {
-	    inputEventManager.OnInteractEvent += OnInteract;
+	    GameEventsManager.Instance.InputEvents.OnInteractEvent += OnInteract;
     }
     
     private void OnDisable()
     {
-	    inputEventManager.OnInteractEvent -= OnInteract;
+	    GameEventsManager.Instance.InputEvents.OnInteractEvent -= OnInteract;
     }
 
     // Update is called once per frame
