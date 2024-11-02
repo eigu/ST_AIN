@@ -12,12 +12,17 @@ public class CollectWasteQuestStep : QuestStep
 
     private void OnEnable()
     {
-        //subscribe to collect waste with parameter of waste type
+        GameEventsManager.Instance.PlayerInteractEvents.OnWastePickUpEvent += WasteCollected;
     }
     
     private void OnDisable()
     {
-        //unsubscribe
+        GameEventsManager.Instance.PlayerInteractEvents.OnWastePickUpEvent -= WasteCollected;
+    }
+
+    private void Start()
+    {
+        UpdateState();
     }
 
     private void WasteCollected(TestWasteType type)
@@ -27,14 +32,12 @@ public class CollectWasteQuestStep : QuestStep
             if (_type == TestWasteType.Any)
             {
                 _wasteCollected++;
-                UpdateState();
             }
             else
             {
                 if (type == _type)
                 {
                     _wasteCollected++;
-                    UpdateState();
                 }
             }
         }
@@ -43,12 +46,15 @@ public class CollectWasteQuestStep : QuestStep
         {
             FinishQuestStep();
         }
+        
+        UpdateState();
     }
 
     private void UpdateState()
     {
         string state = _wasteCollected.ToString();
-        ChangeState(state);
+        string stateDisplayText = $"Collect waste: {_wasteCollected}/{_wasteToCollect}";
+        ChangeState(state,stateDisplayText);
     }
 
     protected override void SetQuestStepState(string state)
@@ -56,11 +62,4 @@ public class CollectWasteQuestStep : QuestStep
         _wasteCollected = Int32.Parse(state);
         UpdateState();
     }
-}
-
-public enum TestWasteType
-{
-    Any,
-    Plastic,
-    Metal
 }

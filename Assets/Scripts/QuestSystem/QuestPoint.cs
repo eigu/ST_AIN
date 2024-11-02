@@ -23,6 +23,11 @@ public class QuestPoint : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        //remove
+        GameEventsManager.Instance.QuestEvents.StartQuest(_questInfo.ID);
+    }
 
     private void OnEnable()
     {

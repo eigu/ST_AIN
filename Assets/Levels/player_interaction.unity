@@ -185,6 +185,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Soda Can
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -258,6 +268,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Bottle
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -330,6 +350,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _trashName
       value: Broken Phone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
@@ -610,6 +640,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Bottle
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -713,6 +753,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _trashName
       value: Soda Can
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
@@ -818,6 +868,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _trashName
       value: Bottle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
@@ -1148,6 +1208,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Plastic
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -1220,6 +1290,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _trashName
       value: Broken Phone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
@@ -1370,6 +1450,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Plastic
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -1443,6 +1533,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Bottle
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -1515,6 +1615,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _trashName
       value: Soda Can
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
@@ -1681,6 +1791,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _trashName
       value: Plastic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
@@ -1888,6 +2008,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Soda Can
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -2035,6 +2165,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Soda Can
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -2107,6 +2247,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _trashName
       value: Broken Phone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
@@ -2213,6 +2363,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Bottle
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -2285,6 +2445,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _trashName
       value: Broken Phone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
@@ -2427,6 +2597,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Broken Phone
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -2500,6 +2680,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Bottle
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -2572,6 +2762,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _trashName
       value: Plastic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
@@ -2775,6 +2975,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Plastic
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -2848,6 +3058,16 @@ PrefabInstance:
       propertyPath: _trashName
       value: Broken Phone
       objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
       propertyPath: m_Name
@@ -2920,6 +3140,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _trashName
       value: Soda Can
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}
@@ -3226,6 +3456,16 @@ PrefabInstance:
         type: 3}
       propertyPath: _trashName
       value: Plastic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteName
+      value: Plastic Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226552756545682818, guid: 9a33f428f13c58b438e056b6e6b76560,
+        type: 3}
+      propertyPath: _wasteType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801203086378816796, guid: 9a33f428f13c58b438e056b6e6b76560,
         type: 3}

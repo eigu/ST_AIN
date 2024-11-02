@@ -81,6 +81,7 @@ public class QuestManager : MonoBehaviour
     private void StartQuest(string id)
     {
         Quest quest = GetQuestByID(id);
+        GameEventsManager.Instance.QuestEvents.StartQuestUI(quest.info.ID, quest.info.displayName, quest.info.questStepsPrefabs.Length , quest.info.questType);
         quest.InstantiateCurrentQuestStep(transform);
         ChangeQuestState(quest.info.ID, QuestState.InProgress);
     }
@@ -98,6 +99,7 @@ public class QuestManager : MonoBehaviour
         else
         {
             ChangeQuestState(quest.info.ID, QuestState.CanFinish);
+            Debug.Log($"Quest \"{quest.info.displayName}\" is finished, you can claim your rewards now.");
         }
         
     }
@@ -115,11 +117,12 @@ public class QuestManager : MonoBehaviour
         //and more
     }
 
-    private void QuestStepDataChange(string id, int stepIndex, QuestStepData questStepData)
+    private void QuestStepDataChange(string id, int stepIndex, bool isFinished, QuestStepData questStepData)
     {
         Quest quest = GetQuestByID(id);
         quest.StoreQuestStepData(questStepData, stepIndex);
         ChangeQuestState(id, quest.state);
+        GameEventsManager.Instance.QuestEvents.QuestStepDataChangeUI(id, stepIndex, questStepData.stateTextDisplay, isFinished, quest.info.questType);
     }
 
     private Dictionary<string, Quest> CreateQuestMap()

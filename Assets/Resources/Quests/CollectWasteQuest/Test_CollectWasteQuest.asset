@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a69604763d764f489cbe17320c800e2, type: 3}
   m_Name: Test_CollectWasteQuest
   m_EditorClassIdentifier: 
-  <ID>k__BackingField: 
-  displayName: 
+  <ID>k__BackingField: Test_CollectWasteQuest
+  displayName: Collect Waste
+  questType: 1
   questPrerequisites: []
-  questStepsPrefab: []
-  money: 0
+  questStepsPrefabs:
+  - {fileID: 3025596795742366738, guid: 0f79a100427ca5d4c95dbabccdb90946, type: 3}
+  - {fileID: 3025596795742366738, guid: 0f79a100427ca5d4c95dbabccdb90946, type: 3}
+  moneyReward: 0

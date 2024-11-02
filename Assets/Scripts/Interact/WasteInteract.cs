@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Interact
 {
-    public class TrashInteract : Interactable
+    public class WasteInteract : Interactable
     {
 
-        [Header("Trash Parameters")] 
-        [SerializeField] private string _trashName; //must be on scriptable object
-
+        [Header("Waste Parameters")] 
+        [SerializeField] private string _wasteName; //must be on scriptable object
+        [SerializeField] private TestWasteType _wasteType; //must be on scriptable object
         private void Start()
         {
            SetUpTrash();
@@ -16,7 +16,7 @@ namespace Interact
 
         public void SetUpTrash()
         {
-            ui.SetInfoText(_trashName); 
+            ui.SetInfoText(_wasteName); 
         }
        
         public override void OnInteract()
@@ -25,6 +25,7 @@ namespace Interact
             
             gameObject.SetActive(false);
             // or destroy
+            GameEventsManager.Instance.PlayerInteractEvents.WastePickUp(_wasteType);
         }
 
         public override void OnFocus()

@@ -7,7 +7,10 @@ public class QuestEvents
     public event Action<string> OnFinishQuestEvent;
     public event Action<Quest> OnQuestStateChangeEvent;
     
-    public event Action<string, int, QuestStepData> OnQuestStepDataChangeEvent;
+    public event Action<string, int, bool, QuestStepData> OnQuestStepDataChangeEvent;
+    
+    public event Action<string, string, int, QuestType> OnStartQuestUIEvent;
+    public event Action<string, int, string, bool, QuestType> OnQuestStepDataChangeUIEvent;
 
     public void StartQuest(string id)
     {
@@ -29,10 +32,21 @@ public class QuestEvents
         OnQuestStateChangeEvent?.Invoke(quest);
     }
     
-    public void QuestStepDataChange(string id, int stepIndex, QuestStepData questStepData)
+    public void QuestStepDataChange(string id, int stepIndex, bool isFinished, QuestStepData questStepData)
     {
-        OnQuestStepDataChangeEvent?.Invoke(id, stepIndex, questStepData);
+        OnQuestStepDataChangeEvent?.Invoke(id, stepIndex, isFinished, questStepData);
     }
+    
+    public void StartQuestUI(string id, string text, int stepCount, QuestType type)
+    {
+        OnStartQuestUIEvent?.Invoke(id, text, stepCount, type);
+    }
+    
+    public void QuestStepDataChangeUI(string id, int stepIndex, string questStepTextDisplay, bool isFinished, QuestType type)
+    {
+        OnQuestStepDataChangeUIEvent?.Invoke(id, stepIndex, questStepTextDisplay, isFinished, type);
+    }
+    
     
     
 }
