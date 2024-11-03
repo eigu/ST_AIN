@@ -4,7 +4,7 @@ using UnityEngine;
 public class QuestEvents
 {
     public event Action<string> OnStartQuestEvent;
-    public event Action<string> OnAdvanceQuestEvent;
+    public event Action<string> OnFinishQuestStepEvent;
     public event Action<string> OnFinishQuestEvent;
     public event Action<Quest> OnQuestStateChangeEvent;
     
@@ -23,9 +23,9 @@ public class QuestEvents
         OnStartQuestEvent?.Invoke(id);
     }
     
-    public void AdvanceQuest(string id)
+    public void FinishQuestStep(string id)
     {
-        OnAdvanceQuestEvent?.Invoke(id);
+        OnFinishQuestStepEvent?.Invoke(id);
     }
     
     public void FinishQuest(string id)
@@ -52,7 +52,7 @@ public class QuestEvents
     {
         OnQuestStepDataChangeUIEvent?.Invoke(id, stepIndex, questStepTextDisplay, isFinished);
     }
-
+    
     public void ReachDestination(string destinationIdentifier)
     {
         OnReachDestinationEvent?.Invoke(destinationIdentifier);

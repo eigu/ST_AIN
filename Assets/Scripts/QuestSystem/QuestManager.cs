@@ -25,7 +25,7 @@ public class QuestManager : MonoBehaviour
     private void OnEnable()
     {
         GameEventsManager.Instance.QuestEvents.OnStartQuestEvent += StartQuest;
-        GameEventsManager.Instance.QuestEvents.OnAdvanceQuestEvent += AdvanceQuest;
+        GameEventsManager.Instance.QuestEvents.OnFinishQuestStepEvent += FinishQuestStep;
         GameEventsManager.Instance.QuestEvents.OnFinishQuestEvent += FinishQuest;
         GameEventsManager.Instance.QuestEvents.OnQuestStepDataChangeEvent += QuestStepDataChange;
 
@@ -35,7 +35,7 @@ public class QuestManager : MonoBehaviour
     private void OnDisable()
     {
         GameEventsManager.Instance.QuestEvents.OnStartQuestEvent -= StartQuest;
-        GameEventsManager.Instance.QuestEvents.OnAdvanceQuestEvent -= AdvanceQuest;
+        GameEventsManager.Instance.QuestEvents.OnFinishQuestStepEvent -= FinishQuestStep;
         GameEventsManager.Instance.QuestEvents.OnFinishQuestEvent -= FinishQuest;
         GameEventsManager.Instance.QuestEvents.OnQuestStepDataChangeEvent -= QuestStepDataChange;
     }
@@ -96,7 +96,7 @@ public class QuestManager : MonoBehaviour
         ChangeQuestState(quest.info.ID, QuestState.InProgress);
     }
     
-    private void AdvanceQuest(string id)
+    private void FinishQuestStep(string id)
     {
         Quest quest = GetQuestByID(id);
         

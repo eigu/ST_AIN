@@ -9,7 +9,12 @@ public class QuestUI : MonoBehaviour
     [Header("Quests")] 
     private Dictionary<string, QuestUIData> _questUIData = new Dictionary<string, QuestUIData>();
     
-    [Header("MainQuest")] 
+    [Header("Notification")]
+    [SerializeField] private TextMeshProUGUI _mainQuestNotificationText;
+    [SerializeField] private float _mainQuestNotificationStayTime;
+    
+    
+    [Header("MainQuest")]
     [SerializeField] private GameObject _mainQuestHolderPrefab;
     [SerializeField] private GameObject _mainQuestStepPrefab;
     [SerializeField] private Transform _mainQuestsParent; //parent
@@ -21,25 +26,26 @@ public class QuestUI : MonoBehaviour
     
     private void OnEnable()
     {
-        GameEventsManager.Instance.QuestEvents.OnStartQuestUIEvent += InitializeQuestUI;
+        GameEventsManager.Instance.QuestEvents.OnStartQuestUIEvent += StartShowQuestUI;
         GameEventsManager.Instance.QuestEvents.OnQuestStepDataChangeUIEvent += UpdateStepUIText;
         GameEventsManager.Instance.QuestEvents.OnFinishQuestEvent += RemoveQuestUI;
     }
     
     private void OnDisable()
     {
-        GameEventsManager.Instance.QuestEvents.OnStartQuestUIEvent -= InitializeQuestUI;
+        GameEventsManager.Instance.QuestEvents.OnStartQuestUIEvent -= StartShowQuestUI;
         GameEventsManager.Instance.QuestEvents.OnQuestStepDataChangeUIEvent -= UpdateStepUIText;
         GameEventsManager.Instance.QuestEvents.OnFinishQuestEvent -= RemoveQuestUI;
     }
 
-    private void InitializeQuestUI(string id, string text, bool isSequential, int stepCount, QuestType type)
+    private void StartShowQuestUI(string id, string text, bool isSequential, int stepCount, QuestType type)
     {
         switch (type)
         {
             case QuestType.MainQuest:
                 CreateQuestContainer(_mainQuestHolderPrefab, _mainQuestsParent, id, text, isSequential);
                 PopulateQuestSteps(id, stepCount, _mainQuestStepPrefab);
+                StartCoroutine(ShowMainQuestNotification(text));
                 break;
             case QuestType.SideQuest:
                 CreateQuestContainer(_sideQuestHolderPrefab, _sideQuestsParent, id, text, isSequential);
@@ -79,14 +85,7 @@ public class QuestUI : MonoBehaviour
         
         var questData = _questUIData[id];
 
-        if (questData.isSequential)
-        {
-            questData.questStepsTMP[index].gameObject.SetActive(!isFinished);
-        }
-        else
-        {
-            questData.questStepsTMP[index].gameObject.SetActive(true);
-        }
+        questData.questStepsTMP[index].gameObject.SetActive(!isFinished);
 
         questData.questStepsTMP[index].text = text;
         
@@ -96,6 +95,16 @@ public class QuestUI : MonoBehaviour
     {
         Destroy(_questUIData[id].holder.gameObject);
         _questUIData.Remove(id);
+    }
+
+    private IEnumerator ShowMainQuestNotification(string text)
+    {
+        _mainQuestNotificationText.text = $"New Main Quest: {text}";
+        _mainQuestNotificationText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(_mainQuestNotificationStayTime);
+        
+        _mainQuestNotificationText.gameObject.SetActive(false);
     }
 
     private struct QuestUIData

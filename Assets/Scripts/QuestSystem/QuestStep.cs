@@ -28,7 +28,7 @@ public abstract class QuestStep : MonoBehaviour
         if (!_isFinished)
         {
             _isFinished = true;
-            GameEventsManager.Instance.QuestEvents.AdvanceQuest(_questID);
+            GameEventsManager.Instance.QuestEvents.FinishQuestStep(_questID);
             Destroy(gameObject);
         }
     }

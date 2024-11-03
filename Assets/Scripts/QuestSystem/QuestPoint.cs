@@ -28,23 +28,4 @@ public class QuestPoint : MonoBehaviour
         //remove
         GameEventsManager.Instance.QuestEvents.StartQuest(_questInfo.ID);
     }
-
-    private void OnEnable()
-    {
-        GameEventsManager.Instance.QuestEvents.OnQuestStateChangeEvent += QuestStateChange;
-    }
-    
-    private void OnDisable()
-    {
-        GameEventsManager.Instance.QuestEvents.OnQuestStateChangeEvent -= QuestStateChange;
-    }
-
-    private void QuestStateChange(Quest quest)
-    {
-        if (quest.info.ID.Equals(_questInfo.ID))
-        {
-            _currentQuestState = quest.state;
-            
-        }
-    }
 }

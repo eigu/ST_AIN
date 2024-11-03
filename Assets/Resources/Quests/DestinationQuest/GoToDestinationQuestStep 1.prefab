@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6884294372302347227}
   - component: {fileID: -4405046719580893431}
   m_Layer: 0
-  m_Name: GoToDestinationQuestStep
+  m_Name: GoToDestinationQuestStep 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _questStepType: 3
-  _targetDestinationIdentifier: finish_line
-  _targetDestinationDisplayName: Finish Line
+  _targetDestinationIdentifier: district_2
+  _targetDestinationDisplayName: District 2
