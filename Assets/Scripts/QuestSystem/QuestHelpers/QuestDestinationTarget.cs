@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class QuestDestinationTarget : MonoBehaviour
 {
-    [SerializeField] private string _destinationIdentifier;
+    [SerializeField] [Tooltip("Unique ID string used to find and identify finder, should match with the finder's ReachDestinationQuestStep's identifier.")]
+    private string _destinationIdentifier;
 
     private void OnEnable()
     {

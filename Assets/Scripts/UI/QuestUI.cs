@@ -7,6 +7,7 @@ using UnityEngine;
 public class QuestUI : MonoBehaviour
 {
     [Header("Quests")] 
+    [SerializeField] private float _questStayTimeAfterDone = 2;
     private Dictionary<string, QuestUIData> _questUIData = new Dictionary<string, QuestUIData>();
     
     [Header("Notification")]
@@ -28,14 +29,14 @@ public class QuestUI : MonoBehaviour
     {
         GameEventsManager.Instance.QuestEvents.OnStartQuestUIEvent += StartShowQuestUI;
         GameEventsManager.Instance.QuestEvents.OnQuestStepDataChangeUIEvent += UpdateStepUIText;
-        GameEventsManager.Instance.QuestEvents.OnFinishQuestEvent += RemoveQuestUI;
+        GameEventsManager.Instance.QuestEvents.OnFinishQuestEvent += FinishQuest;
     }
     
     private void OnDisable()
     {
         GameEventsManager.Instance.QuestEvents.OnStartQuestUIEvent -= StartShowQuestUI;
         GameEventsManager.Instance.QuestEvents.OnQuestStepDataChangeUIEvent -= UpdateStepUIText;
-        GameEventsManager.Instance.QuestEvents.OnFinishQuestEvent -= RemoveQuestUI;
+        GameEventsManager.Instance.QuestEvents.OnFinishQuestEvent -= FinishQuest;
     }
 
     private void StartShowQuestUI(string id, string text, bool isSequential, int stepCount, QuestType type)
@@ -85,16 +86,21 @@ public class QuestUI : MonoBehaviour
         
         var questData = _questUIData[id];
 
-        questData.questStepsTMP[index].gameObject.SetActive(!isFinished);
+        if (!isFinished)
+        {
+            questData.questStepsTMP[index].gameObject.SetActive(true);
+        }
+        else
+        {
+            StartCoroutine(RemoveQuestStepUI(questData.questStepsTMP[index].transform, _questStayTimeAfterDone));
+        }
 
         questData.questStepsTMP[index].text = text;
-        
     }
     
-    private void RemoveQuestUI(string id)
+    private void FinishQuest(string id)
     {
-        Destroy(_questUIData[id].holder.gameObject);
-        _questUIData.Remove(id);
+        StartCoroutine(RemoveQuestUI(_questUIData[id].holder.gameObject, _questStayTimeAfterDone));
     }
 
     private IEnumerator ShowMainQuestNotification(string text)
@@ -105,6 +111,19 @@ public class QuestUI : MonoBehaviour
         yield return new WaitForSeconds(_mainQuestNotificationStayTime);
         
         _mainQuestNotificationText.gameObject.SetActive(false);
+    }
+    
+    private IEnumerator RemoveQuestUI(GameObject o, float secs)
+    {
+        yield return new WaitForSeconds(secs);
+        o.SetActive(false);
+    }
+    
+    private IEnumerator RemoveQuestStepUI(Transform step, float secs)
+    {
+        step.GetChild(0).gameObject.SetActive(true);
+        yield return new WaitForSeconds(secs);
+        step.gameObject.SetActive(false);
     }
 
     private struct QuestUIData

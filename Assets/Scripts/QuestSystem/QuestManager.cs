@@ -123,7 +123,6 @@ public class QuestManager : MonoBehaviour
             {
                 ChangeQuestState(quest.info.ID, QuestState.Finished);
                 GameEventsManager.Instance.QuestEvents.FinishQuest(quest.info.ID);
-                Debug.Log($"Quest \"{quest.info.displayName}\" is finished, you can claim your rewards now.");
             }
         }
 

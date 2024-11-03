@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MainQuestManager : MonoBehaviour
 {
+    [Tooltip("Main Quests in order.")]
     public List<MainQuest> mainQuests = new List<MainQuest>();
     private int _currentMainQuestIndex = -1;
     
@@ -41,6 +42,8 @@ public class MainQuestManager : MonoBehaviour
 
     private void FinishQuest(string questID)
     {
+        if (_currentMainQuestIndex >= mainQuests.Count) return;
+        if (!mainQuests[_currentMainQuestIndex].info.ID.Equals(questID)) return;
         StartCoroutine(StartNextMainQuest());
     }
     
@@ -50,7 +53,10 @@ public class MainQuestManager : MonoBehaviour
 [Serializable]
 public struct MainQuest
 {
+    [Tooltip("Quests serializable object.")]
     public QuestInfoSO info;
+    [Tooltip("Will automatically proceed to next step.")]
     public bool isAutomaticNextQuest;
+    [Tooltip("Time it will take before triggering the next step (if isAutomaticNextQuest is true).")]
     public float waitTimeToNextQuest;
 }

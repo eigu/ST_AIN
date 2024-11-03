@@ -6,8 +6,15 @@ using UnityEngine;
 // will be put on a prefab so that it can track the step
 public class ReachDestinationQuestStep : QuestStep
 {
-    [SerializeField] private string _targetDestinationIdentifier;
-    [SerializeField] private string _targetDestinationDisplayName;
+    [SerializeField] [Tooltip("Unique ID string used to find and identify target destination, should match with the target's QuestDestinationTarget's identifier.")]
+    private string _targetDestinationIdentifier;
+    
+    [SerializeField] [Tooltip("Will be displayed on a UI Text.")]
+    private string _targetDestinationDisplayName;
+    
+    [SerializeField] [Tooltip("Tracks the target destination in real time.")]
+    private bool _shouldTrack;
+    
     private Transform _target;
     private int _distance;
     private bool _isLocated;
@@ -25,7 +32,7 @@ public class ReachDestinationQuestStep : QuestStep
         GameEventsManager.Instance.QuestEvents.OnReachDestinationEvent += ReachDestination;
         GameEventsManager.Instance.QuestEvents.OnSendDestinationTargetEvent += LocateTarget;
         
-        GameEventsManager.Instance.QuestEvents.FindDestinationTarget(_targetDestinationIdentifier);
+        if (_shouldTrack) GameEventsManager.Instance.QuestEvents.FindDestinationTarget(_targetDestinationIdentifier);
     }
     
     private void OnDisable()
@@ -36,16 +43,18 @@ public class ReachDestinationQuestStep : QuestStep
 
     private void Update()
     {
+        if (!_shouldTrack) return;
+        
         if (_isLocated )
         {
             _distance = (int)Vector3.Distance(_player.position, _target.position);
             UpdateState();
         }
+
     }
 
     private void LocateTarget(string destinationIdentifier, Transform target)
     {
-        Debug.Log("ASD");
         if (_targetDestinationIdentifier.Equals(destinationIdentifier))
         {
             _target = target;
@@ -67,7 +76,7 @@ public class ReachDestinationQuestStep : QuestStep
     protected override void UpdateState()
     {
         string state = _distance.ToString();
-        string stateDisplayText = $"Go To {_targetDestinationDisplayName}: {_distance}m";
+        string stateDisplayText = _shouldTrack ? $"Go To {_targetDestinationDisplayName}: {_distance}m." : $"Go To {_targetDestinationDisplayName}.";
         ChangeState(state,stateDisplayText);
     }
 

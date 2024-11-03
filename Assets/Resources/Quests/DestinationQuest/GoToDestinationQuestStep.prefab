@@ -47,3 +47,4 @@ MonoBehaviour:
   _questStepType: 3
   _targetDestinationIdentifier: district_1
   _targetDestinationDisplayName: District 1
+  _shouldTrack: 0

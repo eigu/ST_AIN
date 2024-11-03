@@ -3828,7 +3828,7 @@ MonoBehaviour:
     waitTimeToNextQuest: 5
   - info: {fileID: 11400000, guid: a58d9590c98ebb540908daba16649f8f, type: 2}
     isAutomaticNextQuest: 1
-    waitTimeToNextQuest: 3
+    waitTimeToNextQuest: 5
 --- !u!4 &1811444492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3890258560413890339, guid: 9a33f428f13c58b438e056b6e6b76560,
