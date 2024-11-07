@@ -13,6 +13,7 @@ public class GameEventsManager : MonoBehaviour
     
     //events
     public InputEvents InputEvents;
+    public DialogueEvents DialogueEvents;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class GameEventsManager : MonoBehaviour
             _instance = this;
 
             InputEvents = new InputEvents();
+            DialogueEvents = new DialogueEvents();
         }
         else
         {

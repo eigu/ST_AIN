@@ -6,55 +6,50 @@ using UnityEngine.Events;
 
 public class DialogueCubeTest : MonoBehaviour
 {
-    public string startNodeName;
-    public Renderer ren;
-    public BarkUI bark;
+    [SerializeField] [Tooltip("Yarn Spinner node name.")]
+    private string _startNodeName;
+    [SerializeField] [Tooltip("Disable bark when dialogue is playing.")]
+    private BarkUI _bark;
+    [SerializeField] [Tooltip("For Testing Purposes. Will change color based on commands.")]
+    private Renderer _ren;
+    
 
     public List<DialogueCommandHandler> commandHandlers = new List<DialogueCommandHandler>();
     
-    private void Start()
-    {
-        
-    }
-
     public void StartDialogue()
     {
         
         foreach (var commandHandler in commandHandlers)
         {
-            DialogueManager.Instance.dialogueRunner.AddCommandHandler(commandHandler.commandName, () => commandHandler.del.Invoke());
+            GameEventsManager.Instance.DialogueEvents.AddDialogueCommand(commandHandler);
             //make this one by one so that YarnSpinner recognize the commandName being mentioned
         }
-        
-        bark.StopBark();
-        DialogueManager.Instance.OpenDialogue(startNodeName);
+
+        if (_bark) _bark.StopBark();
+       
+        GameEventsManager.Instance.DialogueEvents.StartDialogue(_startNodeName);
     }
 
     public void TurnRed()
     {
-        ren.material.color = Color.red;
+        if (_ren) _ren.material.color = Color.red;
     }
     
     public void TurnBlue()
     {
-        ren.material.color = Color.blue;
+        if (_ren) _ren.material.color = Color.blue;
     }
 
     public void EndDialogue()
     {
-        bark.StartShowingBark();
+        if (_bark) _bark.StartShowingBark();
         
         foreach (var commandHandler in commandHandlers)
         {
-            DialogueManager.Instance.dialogueRunner.RemoveCommandHandler(commandHandler.commandName);
+            GameEventsManager.Instance.DialogueEvents.RemoveDialogueCommand(commandHandler);
         }
     }
     
-    public void HelloWorld()
-    {
-        Debug.Log("Hello world!");
-
-    }
     
     
 }

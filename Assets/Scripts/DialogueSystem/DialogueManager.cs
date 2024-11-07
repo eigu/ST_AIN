@@ -7,48 +7,49 @@ using Yarn.Unity;
 
 public class DialogueManager : MonoBehaviour
 {
-    #region Instance
+    [SerializeField] [Tooltip("Dialogue Runner is attached in the dialogue UI object.")]
+    private DialogueRunner _dialogueRunner;
 
-    private static DialogueManager _instance;
-
-    public static DialogueManager Instance
+    private void OnEnable()
     {
-        get { return _instance; }
+        GameEventsManager.Instance.DialogueEvents.OnStartDialogueEvent += StartDialogue;
+        GameEventsManager.Instance.DialogueEvents.OnAddDialogueCommandEvent += AddCommandsToRunner;
+        GameEventsManager.Instance.DialogueEvents.OnRemoveDialogueCommandEvent += RemoveCommandsFromRunner;
+    }
+    
+    private void OnDisable()
+    {
+        GameEventsManager.Instance.DialogueEvents.OnStartDialogueEvent -= StartDialogue;
+        GameEventsManager.Instance.DialogueEvents.OnAddDialogueCommandEvent -= AddCommandsToRunner;
+        GameEventsManager.Instance.DialogueEvents.OnRemoveDialogueCommandEvent -= RemoveCommandsFromRunner;
     }
 
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            //DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            //Destroy(this);
-        }
-    }
-
-    #endregion
-
-    public DialogueRunner dialogueRunner;
-    public InMemoryVariableStorage variableStorage;
-
-    private IEnumerator StartTypewriterEffect(string startNode)
+    private IEnumerator StartDialogueWithDelay(string startNode)
     {
         yield return new WaitForSeconds(0.1f); 
-        dialogueRunner.StartDialogue(startNode);
+        _dialogueRunner.StartDialogue(startNode);
     }
 
-    public void OpenDialogue(string startNode)
+    private void StartDialogue(string startNode)
     {
-        StartCoroutine(StartTypewriterEffect(startNode));
+        StartCoroutine(StartDialogueWithDelay(startNode));
     }
 
+    private void AddCommandsToRunner(DialogueCommandHandler dialogueCommandHandler)
+    {
+        _dialogueRunner.AddCommandHandler(dialogueCommandHandler.commandName, () => dialogueCommandHandler.del.Invoke());
+    }
+    
+    private void RemoveCommandsFromRunner(DialogueCommandHandler dialogueCommandHandler)
+    {
+        _dialogueRunner.RemoveCommandHandler(dialogueCommandHandler.commandName);
+    }
+    
+    //testing
     public void SendDialogueTest()
     {
-        OpenDialogue("Start_Test");
+        StartDialogue("Start_Test");
     }
-    
-    
+
+
 }

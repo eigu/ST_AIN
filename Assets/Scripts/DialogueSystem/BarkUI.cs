@@ -53,8 +53,10 @@ public class BarkUI : MonoBehaviour
         
     }
 
-    IEnumerator StartBark()
+    private IEnumerator StartBark()
     {
+        if (_barkData is not { Count: > 0 }) yield break;
+        
         yield return new WaitForSeconds(Random.Range(_minBarkWaitTime, _maxBarkWaitTime));
         
         while (true)
@@ -87,7 +89,7 @@ public class BarkUI : MonoBehaviour
         
     }
     
-    IEnumerator ShowBark(float secs, string text)
+    private IEnumerator ShowBark(float secs, string text)
     {
         _barkTextUI.text = text;
         yield return new WaitForSeconds(secs);
@@ -115,6 +117,8 @@ public class BarkUI : MonoBehaviour
 
     public void StartShowingBark()
     {
+        if (_barkData == null || _barkData.Count <= 0) return;
+        
         _isActive = true;
         _barkCoroutine = StartCoroutine(StartBark());
     }
