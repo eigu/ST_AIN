@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Input Event Manager", menuName = "Input/Input Event Manager")]
-public class InputEventManager : ScriptableObject
+public class InputEvents 
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action<Vector2> OnLookEvent;

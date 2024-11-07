@@ -12,9 +12,6 @@ public class PlayerMovement : MonoBehaviour
 		private PlayerAnimationManager _animationManager;
 		private PlayerLook _playerLook;
 
-		[Header("Input Event Manager")]
-		public InputEventManager inputEventManager;
-		
 		private Vector2 _moveInput;
 
 		[Header("Function Options")] 
@@ -81,18 +78,18 @@ public class PlayerMovement : MonoBehaviour
 
 		private void OnEnable()
 		{
-			inputEventManager.OnMoveEvent += MoveInputHandler;
-			inputEventManager.OnJumpEvent += JumpInputHandler;
-			inputEventManager.OnSprintEvent += SprintInputHandler;
-			inputEventManager.OnCrouchEvent += CrouchInputHandler;
+			GameEventsManager.Instance.InputEvents.OnMoveEvent += MoveInputHandler;
+			GameEventsManager.Instance.InputEvents.OnJumpEvent += JumpInputHandler;
+			GameEventsManager.Instance.InputEvents.OnSprintEvent += SprintInputHandler;
+			GameEventsManager.Instance.InputEvents.OnCrouchEvent += CrouchInputHandler;
 		}
     
 		private void OnDisable()
 		{
-			inputEventManager.OnMoveEvent -= MoveInputHandler;
-			inputEventManager.OnJumpEvent -= JumpInputHandler;
-			inputEventManager.OnSprintEvent -= SprintInputHandler;
-			inputEventManager.OnCrouchEvent -= CrouchInputHandler;
+			GameEventsManager.Instance.InputEvents.OnMoveEvent -= MoveInputHandler;
+			GameEventsManager.Instance.InputEvents.OnJumpEvent -= JumpInputHandler;
+			GameEventsManager.Instance.InputEvents.OnSprintEvent -= SprintInputHandler;
+			GameEventsManager.Instance.InputEvents.OnCrouchEvent -= CrouchInputHandler;
 		}
 
 		private void Start()
