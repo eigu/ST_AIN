@@ -2146,6 +2146,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3138765020622347023, guid: 4bdc0927970a6fc48a4d8a861c92617c,
         type: 3}
+      propertyPath: _barkData.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3138765020622347023, guid: 4bdc0927970a6fc48a4d8a861c92617c,
+        type: 3}
       propertyPath: barkData.Array.data[0]
       value: I'm getting hungry...
       objectReference: {fileID: 0}

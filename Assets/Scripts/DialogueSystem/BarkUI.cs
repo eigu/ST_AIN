@@ -9,12 +9,18 @@ using Random = UnityEngine.Random;
 public class BarkUI : MonoBehaviour
 {
     //private bool _playerNear = false;
-    public GameObject barkHolder;
-    public float wordsPerMinute = 120f;
-    public TextMeshProUGUI barkTextUI;
-    public List<string> barkData = new List<string>();
-    public float minBarkWaitTime = 2f;
-    public float maxBarkWaitTime = 10f;
+    [SerializeField] [Tooltip("GameObject that will be disabled and enabled.")]
+    private GameObject _barkHolder;
+    [SerializeField] [Tooltip("Duration how long the bark will stay.")]
+    private float _wordsPerMinute = 120f;
+    [SerializeField] [Tooltip("TMP for displaying text.")]
+    private TextMeshProUGUI _barkTextUI;
+    [SerializeField] [Tooltip("List of array of dialogues, it will be chosen randomly per bark.")]
+    private List<string> _barkData = new List<string>();
+    [SerializeField] [Tooltip("Minimum duration for the inactive phase of bark.")]
+    private float _minBarkWaitTime = 2f;
+    [SerializeField] [Tooltip("Maximum duration for the inactive phase of bark.")]
+    private float _maxBarkWaitTime = 10f;
     private Camera _mainCam;
     private int _prevIndex = -1;
     private Coroutine _barkCoroutine;
@@ -28,7 +34,7 @@ public class BarkUI : MonoBehaviour
 
     private void Start()
     {
-        if (barkData != null && barkData.Count > 0)
+        if (_barkData != null && _barkData.Count > 0)
         {
             StartShowingBark();
         }
@@ -49,16 +55,16 @@ public class BarkUI : MonoBehaviour
 
     IEnumerator StartBark()
     {
-        yield return new WaitForSeconds(Random.Range(minBarkWaitTime, maxBarkWaitTime));
+        yield return new WaitForSeconds(Random.Range(_minBarkWaitTime, _maxBarkWaitTime));
         
         while (true)
         {
             int index;
 
-            if (barkData.Count > 1)
+            if (_barkData.Count > 1)
             {
                 do {
-                    index = Random.Range(0, barkData.Count);
+                    index = Random.Range(0, _barkData.Count);
                 } while (index == _prevIndex);
             }
             else
@@ -66,24 +72,24 @@ public class BarkUI : MonoBehaviour
                 index = 0;
             }
         
-            barkHolder.SetActive(true);
+            _barkHolder.SetActive(true);
             
-            float secs = CalculateDuration(barkData[index]);
+            float secs = CalculateDuration(_barkData[index]);
         
-            yield return ShowBark(secs, barkData[index]);
+            yield return ShowBark(secs, _barkData[index]);
         
-            barkHolder.SetActive(false);
+            _barkHolder.SetActive(false);
             
             _prevIndex = index;
         
-            yield return new WaitForSeconds(Random.Range(minBarkWaitTime, maxBarkWaitTime));
+            yield return new WaitForSeconds(Random.Range(_minBarkWaitTime, _maxBarkWaitTime));
         }
         
     }
     
     IEnumerator ShowBark(float secs, string text)
     {
-        barkTextUI.text = text;
+        _barkTextUI.text = text;
         yield return new WaitForSeconds(secs);
     }
     
@@ -91,7 +97,7 @@ public class BarkUI : MonoBehaviour
     {
         int wordCount = dialogue.Split(new char[] { ' ', '\n' }, StringSplitOptions.RemoveEmptyEntries).Length;
 
-        float durationInSeconds = (wordCount / wordsPerMinute) * 60f;
+        float durationInSeconds = (wordCount / _wordsPerMinute) * 60f;
 
         return durationInSeconds;
     }
@@ -103,7 +109,7 @@ public class BarkUI : MonoBehaviour
             StopCoroutine(_barkCoroutine);
             _barkCoroutine = null; 
         }
-        barkHolder.SetActive(false);
+        _barkHolder.SetActive(false);
         _isActive = false;
     }
 
@@ -111,7 +117,6 @@ public class BarkUI : MonoBehaviour
     {
         _isActive = true;
         _barkCoroutine = StartCoroutine(StartBark());
-        
     }
     
 }

@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5155057174867467496}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 469.285, y: -150}
-  m_SizeDelta: {x: 738.57, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4814472296442917241
 CanvasRenderer:
@@ -172,7 +172,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 938.57, y: 300}
+  m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8084759169059897850
 CanvasRenderer:
@@ -376,21 +376,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ead4e79a8facb419099a59c5457ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barkHolder: {fileID: 9169807228131765489}
-  barkTextUI: {fileID: 357183506980918443}
-  barkData:
-  - dialogue: This is an example of bark dialogue.
-    duration: 3
-  - dialogue: If you think I'm just a cube. sftu
-    duration: 3
-  - dialogue: Im a cube what do you want
-    duration: 3
-  - dialogue: can you help me...
-    duration: 3
-  - dialogue: Why are you here
-    duration: 3
-  minBarkWaitTime: 2
-  maxBarkWaitTime: 10
+  _barkHolder: {fileID: 9169807228131765489}
+  _wordsPerMinute: 120
+  _barkTextUI: {fileID: 357183506980918443}
+  _barkData: []
+  _minBarkWaitTime: 2
+  _maxBarkWaitTime: 10
 --- !u!1 &9169807228131765489
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5284573702669368398
 RectTransform:
   m_ObjectHideFlags: 0
