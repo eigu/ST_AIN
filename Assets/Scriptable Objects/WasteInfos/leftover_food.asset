@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a716fdabe0af3ea4da1c358c064ac522, type: 3}
+  m_Name: leftover_food
+  m_EditorClassIdentifier: 
+  <ID>k__BackingField: leftover_food
+  displayName: Leftover Food
+  wasteClassification: 1
+  wasteMaterial: 1
+  wasteType: 69
+  icon: {fileID: 21300000, guid: 8c757e59174409c4bb29b39e1e0a56d4, type: 3}

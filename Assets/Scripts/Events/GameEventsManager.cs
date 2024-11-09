@@ -14,6 +14,8 @@ public class GameEventsManager : MonoBehaviour
     //events
     public InputEvents InputEvents;
     public PlayerInteractEvents PlayerInteractEvents;
+    public HotbarEvents HotbarEvents;
+    public WasteEvents WasteEvents;
 
     private void Awake()
     {
@@ -24,6 +26,10 @@ public class GameEventsManager : MonoBehaviour
             InputEvents = new InputEvents();
 
             PlayerInteractEvents = new PlayerInteractEvents();
+            
+            HotbarEvents = new HotbarEvents();
+            
+            WasteEvents = new WasteEvents();
         }
         else
         {

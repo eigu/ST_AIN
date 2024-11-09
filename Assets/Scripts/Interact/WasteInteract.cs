@@ -1,31 +1,38 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Interact
 {
     public class WasteInteract : Interactable
     {
-
         [Header("Waste Parameters")] 
-        [SerializeField] private string _wasteName; //must be on scriptable object
-        [SerializeField] private TestWasteType _wasteType; //must be on scriptable object
+        [SerializeField] private WasteInfoSO _wasteInfo;
+
+        public WasteInfoSO WasteInfoSo => _wasteInfo;
         private void Start()
         {
            SetUpTrash();
         }
 
-        public void SetUpTrash()
+        private void SetUpTrash()
         {
-            ui.SetInfoText(_wasteName); 
+            VerifyWasteInfo();
+            ui.SetInfoText(_wasteInfo.displayName); 
+        }
+
+        private void VerifyWasteInfo()
+        {
+            GameEventsManager.Instance.WasteEvents.ValidateWaste(_wasteInfo.ID);
         }
        
         public override void OnInteract()
         {
             //add to stack intentory
             
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
             // or destroy
-            GameEventsManager.Instance.PlayerInteractEvents.WastePickUp(_wasteType);
+            GameEventsManager.Instance.PlayerInteractEvents.WastePickUp(_wasteInfo, gameObject);
         }
 
         public override void OnFocus()
@@ -50,6 +57,10 @@ namespace Interact
             ui.ToggleInteractIndicator(false);
         }
 
-        
+
+        public void Rename()
+        {
+            gameObject.name = _wasteInfo.ID;
+        }
     }
 }
