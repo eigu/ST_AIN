@@ -50,34 +50,26 @@ public class InventoryUI : MonoBehaviour
     private void OpenInventory(InventoryInfoSO inventoryInfo)
     {
         _inventoryContainer.SetActive(true);
-        if (inventoryInfo != _previousInventory)
-        {
-            _lastSelectedIndex = 0;
-        }
         
-        foreach (var slot in _slots)
+        if (inventoryInfo != _previousInventory) _lastSelectedIndex = 0;
+
+        DeactivateActiveSlots();
+
+        for (int i = 0; i < inventoryInfo.maxInventoryCapacity; i++)
         {
-            if (slot.gameObject.activeInHierarchy)
-            {
-                slot.gameObject.SetActive(false);
-            }
-            else
-            {
-                break;
-            }
+            _slots[i].gameObject.SetActive(true);
+            _slots[i].ResetSlot();
         }
         
         _inventoryNameTMP.text = inventoryInfo.inventoryName;
 
         if (inventoryInfo.inventory.Count <= 0)
         {
-            _inventoryDescriptionContainer.SetActive(false);
-            _noSelectedIndicator.SetActive(true);
+            ToggleInventoryDescription(false);
             return;
         }
         
-        _inventoryDescriptionContainer.SetActive(true);
-        _noSelectedIndicator.SetActive(false);
+        ToggleInventoryDescription(true);
         
         int index = 0;
         
@@ -102,18 +94,41 @@ public class InventoryUI : MonoBehaviour
         _slots[_lastSelectedIndex].SelectSlot(); 
     }
 
+    private void DeactivateActiveSlots()
+    {
+        foreach (var slot in _slots)
+        {
+            if (slot.gameObject.activeInHierarchy)
+            {
+                slot.gameObject.SetActive(false);
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
     private void SetUpIconButton(int index, WasteInfoSO wasteInfo)
     {
-        _slots[index].gameObject.SetActive(true);
         _slots[index].SetWasteInfo(wasteInfo);
     }
     
     private void SetUpDescriptionSection(WasteInfoSO wasteInfoSo)
     {
-        _selectedIcon.sprite = wasteInfoSo.icon;
-        _selectedNameTMP.text = wasteInfoSo.displayName;
-        _selectedClassificationTMP.text = GetStringOfClassification(wasteInfoSo.wasteClassification);
-        _selectedDescriptionTMP.text = string.IsNullOrWhiteSpace(wasteInfoSo.description) ? "No waste description available." : wasteInfoSo.description;
+        if (wasteInfoSo)
+        {
+            ToggleInventoryDescription(true);
+            _selectedIcon.sprite = wasteInfoSo.icon;
+            _selectedNameTMP.text = wasteInfoSo.displayName;
+            _selectedClassificationTMP.text = GetStringOfClassification(wasteInfoSo.wasteClassification);
+            _selectedDescriptionTMP.text =
+                string.IsNullOrWhiteSpace(wasteInfoSo.description) ? "No waste description available." : wasteInfoSo.description;
+        }
+        else
+        {
+            ToggleInventoryDescription(false);
+        }
     }
 
     private string GetStringOfClassification(WasteClassifications wasteClassification)
@@ -145,6 +160,12 @@ public class InventoryUI : MonoBehaviour
     public void CloseInventory()
     {
         _inventoryContainer.SetActive(false);
+    }
+
+    private void ToggleInventoryDescription(bool show)
+    {
+        _inventoryDescriptionContainer.SetActive(show);
+        _noSelectedIndicator.SetActive(!show);
     }
 
     

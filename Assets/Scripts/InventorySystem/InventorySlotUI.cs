@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class InventorySlotUI : MonoBehaviour
 {
     [SerializeField] private Button _button;
+    [SerializeField] private GameObject _icon;
     [SerializeField] private GameObject _activeIndicator;
     private WasteInfoSO _waste;
 
@@ -25,9 +26,16 @@ public class InventorySlotUI : MonoBehaviour
         _activeIndicator.SetActive(false);
     }
 
+    public void ResetSlot()
+    {
+        _icon.SetActive(false);
+        _waste = null;
+    }
+
     public void SetWasteInfo(WasteInfoSO waste)
     {
         _waste = waste;
+        _icon.SetActive(true);
         _button.image.sprite = waste.icon;
     }
 

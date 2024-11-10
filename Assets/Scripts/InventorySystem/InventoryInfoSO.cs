@@ -8,6 +8,7 @@ using UnityEngine;
 public class InventoryInfoSO : ScriptableObject
 {
     public string inventoryName;
+    public int maxInventoryCapacity = 10;
     public List<WasteInfoSO> predefinedContents = new List<WasteInfoSO>();
     public Dictionary<string, InventoryItem> inventory = new Dictionary<string, InventoryItem>();
 
@@ -22,6 +23,12 @@ public class InventoryInfoSO : ScriptableObject
 
     public void Add(WasteInfoSO wasteInfoSo, int quantity)
     {
+        if (maxInventoryCapacity < inventory.Count)
+        {
+            Debug.LogError("Maximum capacity reached, can't add: " + wasteInfoSo.ID);
+            return;
+        }
+        
         if (inventory.ContainsKey(wasteInfoSo.ID))
         {
             inventory[wasteInfoSo.ID].quantity += quantity;

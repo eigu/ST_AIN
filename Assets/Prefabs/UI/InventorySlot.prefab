@@ -137,15 +137,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.54509807}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.54509807}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 28469821a409eb94e819322afd1bb520, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 7eb90a5d8a43d1e459d4abe29a668fc6, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 1.51
 --- !u!114 &6010479267974435540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 6010479267974435540}
+  _icon: {fileID: 5189510383971844824}
   _activeIndicator: {fileID: 6480806699032998652}
 --- !u!1 &6480806699032998652
 GameObject:
