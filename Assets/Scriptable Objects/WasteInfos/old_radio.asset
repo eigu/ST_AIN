@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField: old_radio
   displayName: Old Radio
+  icon: {fileID: 21300000, guid: 27480ca69ad738f4f88622c7b9a56a03, type: 3}
+  isStackable: 0
+  description: 
   wasteClassification: 4
   wasteMaterial: 7
   wasteType: 0
-  icon: {fileID: 21300000, guid: 27480ca69ad738f4f88622c7b9a56a03, type: 3}

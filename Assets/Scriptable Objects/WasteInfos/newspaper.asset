@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField: newspaper
   displayName: Newspaper
+  icon: {fileID: 21300000, guid: 8076a733730d475448278ae0b04572d3, type: 3}
+  isStackable: 0
+  description: 
   wasteClassification: 2
   wasteMaterial: 4
   wasteType: 0
-  icon: {fileID: 21300000, guid: 8076a733730d475448278ae0b04572d3, type: 3}

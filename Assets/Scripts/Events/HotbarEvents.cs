@@ -7,6 +7,9 @@ public class HotbarEvents
     public event Action<int> OnSetUpHotbarUIEvent;
     public event Action<Sprite> OnAddItemOnHotbarUIEvent;
     public event Action OnRemoveItemOnHotbarUIEvent;
+    
+    public event Action<WasteBinInteract> OnPutCurrentItemInWasteBinEvent;
+    
 
     public void SetUpHotbarUI(int count)
     {
@@ -22,4 +25,11 @@ public class HotbarEvents
     {
         OnRemoveItemOnHotbarUIEvent?.Invoke();
     }
+
+    public void PutCurrentItemInWasteBin(WasteBinInteract wasteBinInteract)
+    {
+        OnPutCurrentItemInWasteBinEvent?.Invoke(wasteBinInteract);
+    }
+    
+    
 }

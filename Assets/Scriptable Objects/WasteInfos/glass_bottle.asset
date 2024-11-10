@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField: glass_bottle
   displayName: Glass Bottle
+  icon: {fileID: 21300000, guid: d832013fd81244c4e9ceb9c4b2da285f, type: 3}
+  isStackable: 0
+  description: 
   wasteClassification: 2
   wasteMaterial: 2
   wasteType: 0
-  icon: {fileID: 21300000, guid: d832013fd81244c4e9ceb9c4b2da285f, type: 3}

@@ -20,17 +20,3 @@ public class WasteTest : Editor
     }
 }
 
-[CustomEditor(typeof(WasteInfoSO))]
-public class WasteInfoSOTest : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-        
-        WasteInfoSO wasteInfoSO = (WasteInfoSO)target;
-
-        wasteInfoSO.icon = EditorGUILayout.ObjectField(wasteInfoSO.icon, typeof(Sprite), false, GUILayout.Height(120),GUILayout.Width(120) ) as Sprite;
-
-
-    }
-}

@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField: aluminum_can
   displayName: Aluminum Can
+  icon: {fileID: 21300000, guid: ebdffc95f5937db449099a1e63075f9b, type: 3}
+  isStackable: 0
+  description: 
   wasteClassification: 2
   wasteMaterial: 3
   wasteType: 0
-  icon: {fileID: 21300000, guid: ebdffc95f5937db449099a1e63075f9b, type: 3}

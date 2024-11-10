@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ID>k__BackingField: leftover_food
   displayName: Leftover Food
+  icon: {fileID: 21300000, guid: 8c757e59174409c4bb29b39e1e0a56d4, type: 3}
+  isStackable: 0
+  description: 
   wasteClassification: 1
   wasteMaterial: 1
   wasteType: 69
-  icon: {fileID: 21300000, guid: 8c757e59174409c4bb29b39e1e0a56d4, type: 3}

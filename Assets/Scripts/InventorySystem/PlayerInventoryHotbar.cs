@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Hotbar : MonoBehaviour
+public class PlayerInventoryHotbar : MonoBehaviour
 {
     [SerializeField] private int maxSlotCount = 5;
     private int _currentHoldCount = 0;
@@ -12,11 +12,13 @@ public class Hotbar : MonoBehaviour
     private void OnEnable()
     {
         GameEventsManager.Instance.PlayerInteractEvents.OnWastePickUpEvent += CheckPickUp;
+        GameEventsManager.Instance.HotbarEvents.OnPutCurrentItemInWasteBinEvent += PutCurrentItemInWasteBin;
     }
-    
+
     private void OnDisable()
     {
         GameEventsManager.Instance.PlayerInteractEvents.OnWastePickUpEvent -= CheckPickUp;
+        GameEventsManager.Instance.HotbarEvents.OnPutCurrentItemInWasteBinEvent -= PutCurrentItemInWasteBin;
     }
 
     private void Start()
@@ -54,5 +56,26 @@ public class Hotbar : MonoBehaviour
     public void TestDrop(string id)
     {
        GameEventsManager.Instance.WasteEvents.SpawnWasteGameObject(id, transform.position + transform.forward * 1.5f, Quaternion.identity);
+    }
+    
+    private void PutCurrentItemInWasteBin(WasteBinInteract wasteBin)
+    {
+        if (_currentHoldCount <= 0) return;
+
+        if (wasteBin.validWasteClassification == _hotbarContents.Peek().wasteClassification)
+        {
+            // ui correct bin
+            wasteBin.inventoryInfoSO.Add(_hotbarContents.Pop(), 1); // or just id??
+
+            GameEventsManager.Instance.HotbarEvents.RemoveItemOnHotbarUI();
+
+            _currentHoldCount--;
+            if (_currentHoldCount <= 0) _currentHoldCount = 0;
+        }
+        else
+        {
+            Debug.Log("WRONG BIN!");
+            // ui wrong bin
+        }
     }
 }

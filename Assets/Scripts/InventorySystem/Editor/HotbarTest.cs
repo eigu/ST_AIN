@@ -2,18 +2,18 @@
 using UnityEditor;
 using UnityEditor.Rendering;
 
-[CustomEditor(typeof(Hotbar))]
+[CustomEditor(typeof(PlayerInventoryHotbar))]
 public class HotbarTest : Editor
 {
     public override void OnInspectorGUI()
     {
-        Hotbar hotbar = (Hotbar)target;
+        PlayerInventoryHotbar playerInventoryHotbar = (PlayerInventoryHotbar)target;
 
         DrawDefaultInspector();
 
         if (GUILayout.Button("Drop test"))
         {
-            hotbar.CheckDrop();
+            playerInventoryHotbar.CheckDrop();
         }
         
     }
