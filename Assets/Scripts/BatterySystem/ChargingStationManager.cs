@@ -28,6 +28,7 @@ public class ChargingStationManager : MonoBehaviour
     {
         if (_chargingStations.Count == 0)
         {
+            Debug.LogError("No Charging Stations Found.");
             return null; 
         }
 
