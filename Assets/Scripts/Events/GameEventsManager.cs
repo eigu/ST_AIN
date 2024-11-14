@@ -13,6 +13,8 @@ public class GameEventsManager : MonoBehaviour
     
     //events
     public InputEvents InputEvents;
+ public QuestEvents QuestEvents;
+    public PlayerInteractEvents PlayerInteractEvents;
      public PlayerInteractEvents PlayerInteractEvents;
     public HotbarEvents HotbarEvents;
     public WasteEvents WasteEvents;
@@ -31,6 +33,8 @@ public class GameEventsManager : MonoBehaviour
             _instance = this;
 
             InputEvents = new InputEvents();
+            
+            QuestEvents = new QuestEvents();
             
             PlayerInteractEvents = new PlayerInteractEvents();
             
