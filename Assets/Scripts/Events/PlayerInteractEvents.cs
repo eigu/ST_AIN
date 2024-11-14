@@ -1,19 +1,14 @@
 
 using System;
+using UnityEngine;
 
 public class PlayerInteractEvents
 {
-    public event Action<TestWasteType> OnWastePickUpEvent;
+    public event Action<WasteInfoSO, GameObject> OnWastePickUpEvent;
 
-    public void WastePickUp(TestWasteType wasteType)
+    public void WastePickUp(WasteInfoSO waste, GameObject wasteGameObject)
     {
-        OnWastePickUpEvent?.Invoke(wasteType);
+        OnWastePickUpEvent?.Invoke(waste, wasteGameObject);
     }
 }
 
-public enum TestWasteType
-{
-    Any,
-    Plastic,
-    Metal
-}
