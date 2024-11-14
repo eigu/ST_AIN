@@ -30,15 +30,19 @@ public class PlayerHeadRotate : MonoBehaviour
         headTargetPosition = head.position + lookDirection * lookAtDistance;
         headLookAt.position = Vector3.Lerp(headLookAt.position, headTargetPosition, Time.deltaTime * lookSmooth);
 
-        // Check if the angle is greater than 90 degrees
-        if (angle < 90f)
+        if (_multiAimConstraint)
         {
-            _multiAimConstraint.weight = Mathf.Lerp(_multiAimConstraint.weight, 1f, Time.deltaTime * lookSmooth);
+            // Check if the angle is greater than 90 degrees
+            if (angle < 90f)
+            {
+                _multiAimConstraint.weight = Mathf.Lerp(_multiAimConstraint.weight, 1f, Time.deltaTime * lookSmooth);
+            }
+            else
+            {
+                _multiAimConstraint.weight = Mathf.Lerp(_multiAimConstraint.weight, 0f, Time.deltaTime * lookSmooth);
+            }
         }
-        else
-        {
-            _multiAimConstraint.weight = Mathf.Lerp(_multiAimConstraint.weight, 0f, Time.deltaTime * lookSmooth);
-        }
+        
 
         
     }
