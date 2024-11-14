@@ -13,8 +13,13 @@ public class GameEventsManager : MonoBehaviour
     
     //events
     public InputEvents InputEvents;
+    
+    public PathFindingEvents PathFindingEvents;
+    
+    public BatteryEvents BatteryEvents;
+    
     public DialogueEvents DialogueEvents;
-
+    
     private void Awake()
     {
         if (_instance == null)
@@ -22,6 +27,11 @@ public class GameEventsManager : MonoBehaviour
             _instance = this;
 
             InputEvents = new InputEvents();
+            
+            PathFindingEvents = new PathFindingEvents();
+            
+            BatteryEvents = new BatteryEvents();
+            
             DialogueEvents = new DialogueEvents();
         }
         else
