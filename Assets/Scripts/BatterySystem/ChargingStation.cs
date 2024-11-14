@@ -9,4 +9,18 @@ public class ChargingStation : MonoBehaviour
    {
       GameEventsManager.Instance.BatteryEvents.InitializeChargingStation(this);
    }
+
+   private void OnTriggerEnter(Collider collision)
+   {
+      if (collision.TryGetComponent<BatterySystem>(out BatterySystem batterySystem))
+      {
+         batterySystem.ReplenishBattery();
+      }
+   }
+
+   private void On(Collision collision)
+   {
+      Debug.Log("");
+      
+   }
 }

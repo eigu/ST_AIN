@@ -55,7 +55,7 @@ public class BatterySystem : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     private void CheckChargingStation()
     {
-        if ((_batteryTimeAllowance + _currentBatteryLife) <= _chargingStationManager.GetTimeBeforeReachingNearestStation(transform, _playerSpeed.Value))
+        if ((_currentBatteryLife - _batteryTimeAllowance) <= _chargingStationManager.GetTimeBeforeReachingNearestStation(transform, _playerSpeed.Value))
         {
             Debug.Log("Low Battery!!! Go to the nearest charging station!");
             _hasWarnedLowBattery = true;
@@ -69,7 +69,7 @@ public class BatterySystem : MonoBehaviour
     }
 
 
-    private void ReplenishBattery()
+    public void ReplenishBattery()
     {
         _currentBatteryLife = _maxBatteryLife;
         _hasWarnedLowBattery = false;
