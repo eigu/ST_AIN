@@ -13,6 +13,10 @@ public class GameEventsManager : MonoBehaviour
     
     //events
     public InputEvents InputEvents;
+     public PlayerInteractEvents PlayerInteractEvents;
+    public HotbarEvents HotbarEvents;
+    public WasteEvents WasteEvents;
+    public InventoryEvents InventoryEvents;
     
     public PathFindingEvents PathFindingEvents;
     
@@ -28,11 +32,20 @@ public class GameEventsManager : MonoBehaviour
 
             InputEvents = new InputEvents();
             
+            PlayerInteractEvents = new PlayerInteractEvents();
+            
+            HotbarEvents = new HotbarEvents();
+            
+            WasteEvents = new WasteEvents();
+            
+            InventoryEvents = new InventoryEvents();
+            
             PathFindingEvents = new PathFindingEvents();
             
             BatteryEvents = new BatteryEvents();
             
             DialogueEvents = new DialogueEvents();
+            
         }
         else
         {
