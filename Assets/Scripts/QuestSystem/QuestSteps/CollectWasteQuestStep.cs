@@ -6,7 +6,7 @@ using UnityEngine;
 // will be put on a prefab so that it can track the step
 public class CollectWasteQuestStep : QuestStep
 {
-    [SerializeField] private TestWasteType _type;
+    [SerializeField] private WasteClassifications _type;
     [SerializeField] private int _wasteToCollect = 5;
     private int _wasteCollected = 0;
 
@@ -20,17 +20,17 @@ public class CollectWasteQuestStep : QuestStep
         GameEventsManager.Instance.PlayerInteractEvents.OnWastePickUpEvent -= WasteCollected;
     }
 
-    private void WasteCollected(TestWasteType type)
+    private void WasteCollected(WasteInfoSO info, GameObject o)
     {
         if (_wasteCollected < _wasteToCollect)
         {
-            if (_type == TestWasteType.Any)
+            if (_type == WasteClassifications.Any)
             {
                 _wasteCollected++;
             }
             else
             {
-                if (type == _type)
+                if (info.wasteClassification == _type)
                 {
                     _wasteCollected++;
                 }

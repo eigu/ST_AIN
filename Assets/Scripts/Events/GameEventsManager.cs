@@ -15,7 +15,6 @@ public class GameEventsManager : MonoBehaviour
     public InputEvents InputEvents;
  public QuestEvents QuestEvents;
     public PlayerInteractEvents PlayerInteractEvents;
-     public PlayerInteractEvents PlayerInteractEvents;
     public HotbarEvents HotbarEvents;
     public WasteEvents WasteEvents;
     public InventoryEvents InventoryEvents;
