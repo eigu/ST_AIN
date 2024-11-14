@@ -15,6 +15,8 @@ public class GameEventsManager : MonoBehaviour
     public InputEvents InputEvents;
     
     public PathFindingEvents PathFindingEvents;
+    
+    public BatteryEvents BatteryEvents;
 
     private void Awake()
     {
@@ -25,6 +27,8 @@ public class GameEventsManager : MonoBehaviour
             InputEvents = new InputEvents();
             
             PathFindingEvents = new PathFindingEvents();
+            
+            BatteryEvents = new BatteryEvents();
         }
         else
         {
