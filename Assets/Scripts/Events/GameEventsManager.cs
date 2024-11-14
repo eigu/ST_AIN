@@ -13,11 +13,17 @@ public class GameEventsManager : MonoBehaviour
     
     //events
     public InputEvents InputEvents;
-    public PlayerInteractEvents PlayerInteractEvents;
+     public PlayerInteractEvents PlayerInteractEvents;
     public HotbarEvents HotbarEvents;
     public WasteEvents WasteEvents;
     public InventoryEvents InventoryEvents;
-
+    
+    public PathFindingEvents PathFindingEvents;
+    
+    public BatteryEvents BatteryEvents;
+    
+    public DialogueEvents DialogueEvents;
+    
     private void Awake()
     {
         if (_instance == null)
@@ -25,7 +31,7 @@ public class GameEventsManager : MonoBehaviour
             _instance = this;
 
             InputEvents = new InputEvents();
-
+            
             PlayerInteractEvents = new PlayerInteractEvents();
             
             HotbarEvents = new HotbarEvents();
@@ -33,6 +39,13 @@ public class GameEventsManager : MonoBehaviour
             WasteEvents = new WasteEvents();
             
             InventoryEvents = new InventoryEvents();
+            
+            PathFindingEvents = new PathFindingEvents();
+            
+            BatteryEvents = new BatteryEvents();
+            
+            DialogueEvents = new DialogueEvents();
+            
         }
         else
         {
