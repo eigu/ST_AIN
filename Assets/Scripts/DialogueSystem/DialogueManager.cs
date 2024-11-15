@@ -27,6 +27,7 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator StartDialogueWithDelay(string startNode)
     {
         yield return new WaitForSeconds(0.1f); 
+        GameEventsManager.Instance.InputEvents.SetUI();
         _dialogueRunner.StartDialogue(startNode);
     }
 

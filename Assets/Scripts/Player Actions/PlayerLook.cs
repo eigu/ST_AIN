@@ -77,6 +77,8 @@ public class PlayerLook : MonoBehaviour
 	    GameEventsManager.Instance.InputEvents.OnSwitchViewEvent += SwitchViewHandler;
 	    GameEventsManager.Instance.InputEvents.OnAimEvent += AimInputHandler;
 	    GameEventsManager.Instance.InputEvents.OnCursorEvent += CursorHandler;
+	    GameEventsManager.Instance.InputEvents.OnSetGameEvent += HideCursorUI;
+	    GameEventsManager.Instance.InputEvents.OnSetUIEvent += ShowCursorUI;
     }
     
     private void OnDisable()
@@ -85,6 +87,8 @@ public class PlayerLook : MonoBehaviour
 	    GameEventsManager.Instance.InputEvents.OnSwitchViewEvent -= SwitchViewHandler;
 	    GameEventsManager.Instance.InputEvents.OnAimEvent -= AimInputHandler;
 	    GameEventsManager.Instance.InputEvents.OnCursorEvent -= CursorHandler;
+	    GameEventsManager.Instance.InputEvents.OnSetGameEvent -= HideCursorUI;
+	    GameEventsManager.Instance.InputEvents.OnSetUIEvent -= ShowCursorUI;
     }
 
     private void Awake()
@@ -288,6 +292,7 @@ public class PlayerLook : MonoBehaviour
     
     private void CursorHandler(bool isShow)
     {
+	    
 	    if (!canHideCursor) return;
 	    
 	    if (isShow)
@@ -302,6 +307,24 @@ public class PlayerLook : MonoBehaviour
 		    Cursor.lockState = CursorLockMode.Locked;
 		    Cursor.visible = false;
 	    }
+    }
+
+    private void ShowCursorUI()
+    {
+	    canHideCursor = false;
+	    
+	    canLook = false;
+	    Cursor.lockState = CursorLockMode.None;
+	    Cursor.visible = true;
+    }
+    
+    private void HideCursorUI()
+    {
+	    canHideCursor = true;
+	    
+	    canLook = true;
+	    Cursor.lockState = CursorLockMode.Locked;
+	    Cursor.visible = false;
     }
 
     private void AimInputHandler(bool val)

@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 6167590451703760516}
   - component: {fileID: 549854760565344907}
   - component: {fileID: 4145545257990807072}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NearCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -704,4 +704,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui: {fileID: 4839587345727052533}
+  guideText: Press [F] for primary interact. Press [E] for secondary interact.
   _wasteInfo: {fileID: 0}

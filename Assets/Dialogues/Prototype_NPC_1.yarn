@@ -1,0 +1,38 @@
+﻿
+title: NPC1_start
+tags:
+position: -99,79
+---
+<<declare $speaker1 = "Prototype NPC 1">>
+<<declare $player = "Saint 1">>
+{$speaker1}: Hey, can you do something for me real quick?
+    -> {$player}: Beep boop– Affirmative–
+        {$speaker1}: Awesome! There's some trash scattered 'round right now.
+        {$speaker1}: Can you pick up 5 of them for me?
+        <<start_quest_collect>>
+        <<next_dialogue>>
+        <<NPC1_end>>
+    -> {$player}: Bzzt bzzt– Negative–
+        {$speaker1}: Well, see you around then.
+        <<NPC1_end>>
+===
+title: NPC1_waiting
+tags:
+position: -99,79
+---
+{$speaker1}: Oh it's you again.
+{$speaker1}: There's still some trash around.
+{$speaker1}: Can you pick up 5 of them for me?
+<<NPC1_end>>
+===
+
+title: NPC1_finished
+tags:
+position: -99,79
+---
+{$speaker1}: That was quick!
+{$speaker1}: Thank you so much!.
+<<NPC1_finish>>
+<<NPC1_end>>
+===
+

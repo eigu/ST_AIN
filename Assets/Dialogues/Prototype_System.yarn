@@ -1,0 +1,14 @@
+﻿title: System_start
+tags:
+position: -99,79
+---
+<<declare $speaker = "Prototype NPC 1">>
+<<declare $p = "Saint 1">>
+{$speaker}: Hey, can you do something for me real quick?
+    -> {$p}: Beep boop– Affirmative–
+        {$speaker}: Awesome! There's some trash scattered 'round right now.
+        {$speaker}: Can you pick up 5 of them for me?
+    -> {$p}: Bzzt bzzt– Negative–
+        {$speaker}: Well, see you around then.
+        <<NPC1_end>>
+===

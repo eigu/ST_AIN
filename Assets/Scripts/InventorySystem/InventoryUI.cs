@@ -38,18 +38,23 @@ public class InventoryUI : MonoBehaviour
     private void OnEnable()
     {
         GameEventsManager.Instance.InventoryEvents.OnOpenInventoryEvent += OpenInventory;
+        GameEventsManager.Instance.InventoryEvents.OnCloseInventoryEvent += CloseInventory;
         GameEventsManager.Instance.InventoryEvents.OnSelectInventorySlotUIEvent += SetUpDescriptionSection;
+        GameEventsManager.Instance.InputEvents.OnResumeEvent += CloseInventory;
     }
 
     private void OnDisable()
     {
         GameEventsManager.Instance.InventoryEvents.OnOpenInventoryEvent -= OpenInventory;
+        GameEventsManager.Instance.InventoryEvents.OnCloseInventoryEvent -= CloseInventory;
         GameEventsManager.Instance.InventoryEvents.OnSelectInventorySlotUIEvent -= SetUpDescriptionSection;
+        GameEventsManager.Instance.InputEvents.OnResumeEvent -= CloseInventory;
     }
 
     private void OpenInventory(InventoryInfoSO inventoryInfo)
     {
         _inventoryContainer.SetActive(true);
+        GameEventsManager.Instance.UIEvents.OpenUIPanel(_inventoryContainer);
         
         if (inventoryInfo != _previousInventory) _lastSelectedIndex = 0;
 
@@ -160,6 +165,7 @@ public class InventoryUI : MonoBehaviour
     public void CloseInventory()
     {
         _inventoryContainer.SetActive(false);
+        GameEventsManager.Instance.InputEvents.SetGame();
     }
 
     private void ToggleInventoryDescription(bool show)

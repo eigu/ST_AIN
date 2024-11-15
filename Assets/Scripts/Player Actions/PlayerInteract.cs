@@ -24,12 +24,14 @@ public class PlayerInteract : MonoBehaviour
     
     private void OnEnable()
     {
-	    GameEventsManager.Instance.InputEvents.OnInteractEvent += OnInteract;
+	    GameEventsManager.Instance.InputEvents.OnPrimaryInteractEvent += OnPrimaryInteract;
+	    GameEventsManager.Instance.InputEvents.OnSecondaryInteractEvent += OnSecondaryInteract;
     }
     
     private void OnDisable()
     {
-	    GameEventsManager.Instance.InputEvents.OnInteractEvent -= OnInteract;
+	    GameEventsManager.Instance.InputEvents.OnPrimaryInteractEvent -= OnPrimaryInteract;
+	    GameEventsManager.Instance.InputEvents.OnSecondaryInteractEvent -= OnSecondaryInteract;
     }
 
     // Update is called once per frame
@@ -104,14 +106,21 @@ public class PlayerInteract : MonoBehaviour
 		}
 	}
 
-	private void OnInteract()
+	private void OnPrimaryInteract()
 	{
 		if (currentInteractable != null)
 		{
-			currentInteractable.OnInteract();
+			currentInteractable.OnPrimaryInteract();
 		}
 	}
 	
+	private void OnSecondaryInteract()
+	{
+		if (currentInteractable != null)
+		{
+			currentInteractable.OnSecondaryInteract();
+		}
+	}
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;

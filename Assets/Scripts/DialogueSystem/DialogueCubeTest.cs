@@ -53,10 +53,3 @@ public class DialogueCubeTest : MonoBehaviour
     
     
 }
-
-[Serializable]
-public struct DialogueCommandHandler
-{
-    public string commandName;
-    public UnityEvent del;
-}

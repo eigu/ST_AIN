@@ -51,6 +51,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "InteractSecondary",
+                    "type": "Button",
+                    "id": "feeee8ce-dbd7-4a65-905f-9fd620a8cea9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Cursor",
                     "type": "Button",
                     "id": "22346287-7549-4ff6-9d37-657f76df9088",
@@ -409,6 +418,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6dfdeeb-2bb4-4116-ac03-6b4aa3f34d87",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "InteractSecondary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "281b0eea-873e-4ad6-b1fa-390c36408cf7",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "InteractSecondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

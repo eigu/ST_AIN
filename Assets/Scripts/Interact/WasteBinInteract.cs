@@ -8,19 +8,24 @@ public class WasteBinInteract : Interactable
     public InventoryInfoSO inventoryInfoSO;
     public WasteClassifications validWasteClassification;
 
-    public override void OnInteract()
+    public override void OnPrimaryInteract()
     {
         GameEventsManager.Instance.HotbarEvents.PutCurrentItemInWasteBin(this);
     }
 
+    public override void OnSecondaryInteract()
+    {
+        OpenInventory();
+    }
+
     public override void OnFocus()
     {
-        
+        GameEventsManager.Instance.UIEvents.UpdateUIGuideText(guideText);
     }
 
     public override void OnLoseFocus()
     {
-        
+        GameEventsManager.Instance.UIEvents.UpdateUIGuideText("");
     }
 
     public override void OnNear()
@@ -36,5 +41,6 @@ public class WasteBinInteract : Interactable
     public void OpenInventory()
     {
         GameEventsManager.Instance.InventoryEvents.OpenInventory(inventoryInfoSO);
+        GameEventsManager.Instance.InputEvents.SetUI();
     }
 }

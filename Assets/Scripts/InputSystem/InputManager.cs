@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,15 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
             _playerInputActions.UI.SetCallbacks(this);
             SetGameplay();
         }
+
+        GameEventsManager.Instance.InputEvents.OnSetGameEvent += SetGameplay;
+        GameEventsManager.Instance.InputEvents.OnSetUIEvent += SetUI;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.Instance.InputEvents.OnSetGameEvent -= SetGameplay;
+        GameEventsManager.Instance.InputEvents.OnSetUIEvent -= SetUI;
     }
 
     private void SetGameplay()
@@ -91,7 +101,15 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
     {
         if (context.phase == InputActionPhase.Started)
         {
-            GameEventsManager.Instance.InputEvents.Interact();
+            GameEventsManager.Instance.InputEvents.PrimaryInteract();
+        }
+    }
+
+    public void OnInteractSecondary(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            GameEventsManager.Instance.InputEvents.SecondaryInteract();
         }
     }
 

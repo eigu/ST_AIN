@@ -7,6 +7,7 @@ public class BatteryUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _batteryPercent;
     [SerializeField] private Image _batteryImage;
+    [SerializeField] private bool _wholeNumber;
 
     private void OnEnable()
     {
@@ -21,6 +22,7 @@ public class BatteryUI : MonoBehaviour
     private void UpdateBatteryUI(float percent)
     {
         _batteryImage.fillAmount = percent / 100;
-        _batteryPercent.text = $"{percent:F1}%";
+        
+        _batteryPercent.text = _wholeNumber ? $"{percent:F0}%" : $"{percent:F1}%";
     }
 }

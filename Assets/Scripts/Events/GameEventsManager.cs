@@ -13,17 +13,15 @@ public class GameEventsManager : MonoBehaviour
     
     //events
     public InputEvents InputEvents;
- public QuestEvents QuestEvents;
+    public QuestEvents QuestEvents;
     public PlayerInteractEvents PlayerInteractEvents;
     public HotbarEvents HotbarEvents;
     public WasteEvents WasteEvents;
     public InventoryEvents InventoryEvents;
-    
     public PathFindingEvents PathFindingEvents;
-    
     public BatteryEvents BatteryEvents;
-    
     public DialogueEvents DialogueEvents;
+    public UIEvents UIEvents;
     
     private void Awake()
     {
@@ -48,6 +46,8 @@ public class GameEventsManager : MonoBehaviour
             BatteryEvents = new BatteryEvents();
             
             DialogueEvents = new DialogueEvents();
+            
+            UIEvents = new UIEvents();
             
         }
         else

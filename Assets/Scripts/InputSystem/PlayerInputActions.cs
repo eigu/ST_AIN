@@ -73,6 +73,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""InteractSecondary"",
+                    ""type"": ""Button"",
+                    ""id"": ""feeee8ce-dbd7-4a65-905f-9fd620a8cea9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Cursor"",
                     ""type"": ""Button"",
                     ""id"": ""22346287-7549-4ff6-9d37-657f76df9088"",
@@ -433,6 +442,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6dfdeeb-2bb4-4116-ac03-6b4aa3f34d87"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""InteractSecondary"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""281b0eea-873e-4ad6-b1fa-390c36408cf7"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""InteractSecondary"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -628,6 +659,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_InteractSecondary = m_Player.FindAction("InteractSecondary", throwIfNotFound: true);
         m_Player_Cursor = m_Player.FindAction("Cursor", throwIfNotFound: true);
         m_Player_SwitchView = m_Player.FindAction("SwitchView", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
@@ -707,6 +739,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_InteractSecondary;
     private readonly InputAction m_Player_Cursor;
     private readonly InputAction m_Player_SwitchView;
     private readonly InputAction m_Player_Aim;
@@ -723,6 +756,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @InteractSecondary => m_Wrapper.m_Player_InteractSecondary;
         public InputAction @Cursor => m_Wrapper.m_Player_Cursor;
         public InputAction @SwitchView => m_Wrapper.m_Player_SwitchView;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
@@ -754,6 +788,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @InteractSecondary.started += instance.OnInteractSecondary;
+            @InteractSecondary.performed += instance.OnInteractSecondary;
+            @InteractSecondary.canceled += instance.OnInteractSecondary;
             @Cursor.started += instance.OnCursor;
             @Cursor.performed += instance.OnCursor;
             @Cursor.canceled += instance.OnCursor;
@@ -794,6 +831,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @InteractSecondary.started -= instance.OnInteractSecondary;
+            @InteractSecondary.performed -= instance.OnInteractSecondary;
+            @InteractSecondary.canceled -= instance.OnInteractSecondary;
             @Cursor.started -= instance.OnCursor;
             @Cursor.performed -= instance.OnCursor;
             @Cursor.canceled -= instance.OnCursor;
@@ -927,6 +967,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnInteractSecondary(InputAction.CallbackContext context);
         void OnCursor(InputAction.CallbackContext context);
         void OnSwitchView(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);

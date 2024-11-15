@@ -26,7 +26,7 @@ namespace Interact
             GameEventsManager.Instance.WasteEvents.ValidateWaste(_wasteInfo.ID);
         }
        
-        public override void OnInteract()
+        public override void OnPrimaryInteract()
         {
             //add to stack intentory
             
@@ -35,16 +35,23 @@ namespace Interact
             GameEventsManager.Instance.PlayerInteractEvents.WastePickUp(_wasteInfo, gameObject);
         }
 
+        public override void OnSecondaryInteract()
+        {
+            
+        }
+
         public override void OnFocus()
         {
             ui.ToggleInteractInformation(true);
             ui.ToggleInteractIndicator(false);
+            GameEventsManager.Instance.UIEvents.UpdateUIGuideText(guideText);
         }
 
         public override void OnLoseFocus()
         {
             ui.ToggleInteractInformation(false);
             ui.ToggleInteractIndicator(true);
+            GameEventsManager.Instance.UIEvents.UpdateUIGuideText("");
         }
 
         public override void OnNear()

@@ -14,8 +14,8 @@ public class QuestEvents
     public event Action<string, int, string, bool> OnQuestStepDataChangeUIEvent;
     
     public event Action<string> OnReachDestinationEvent;
+    public event Action<string> OnTalkToNPCEvent;
     public event Action<string, Transform> OnSendDestinationTargetEvent;
-    
     public event Action<string> OnFindDestinationTargetEvent;
 
     public void StartQuest(string id)
@@ -58,6 +58,11 @@ public class QuestEvents
         OnReachDestinationEvent?.Invoke(destinationIdentifier);
     }
     
+    public void TalkToNPC(string NPCIdentifier)
+    {
+        OnTalkToNPCEvent?.Invoke(NPCIdentifier);
+    }
+    
     public void SendDestinationTarget(string destinationIdentifier, Transform target)
     {
         OnSendDestinationTargetEvent?.Invoke(destinationIdentifier, target);
@@ -67,6 +72,8 @@ public class QuestEvents
     {
         OnFindDestinationTargetEvent?.Invoke(destinationIdentifier);
     }
+    
+    
     
     
 }
