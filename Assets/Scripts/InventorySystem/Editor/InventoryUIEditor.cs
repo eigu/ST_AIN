@@ -13,7 +13,8 @@ public class InventoryUIEditor : Editor
 
         if (GUILayout.Button("Close Inventory"))
         {
-            inventoryUI.CloseInventory();
+            //inventoryUI.CloseInventory();
+            Debug.LogError("Currently no function.");
         }
         
     }

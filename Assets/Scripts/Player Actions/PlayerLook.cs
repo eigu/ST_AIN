@@ -30,7 +30,12 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera tpsNormalCam;
     [SerializeField] private CinemachineVirtualCamera tpsAimingCam;
     [SerializeField] private CinemachineVirtualCamera topDownCam;
-    [SerializeField] private GameObject cameraTargetObject;
+    [SerializeField] private GameObject originalTargetObject;
+    [SerializeField] private GameObject delayTargetObject;
+    private Quaternion _targetTargetRotation; // Target rotation for original Target
+    private Quaternion _currentTargetRotation; // Current rotation of original Target
+    [SerializeField] private FloatVariable lookSmoothTime;
+    
     
     [Header("Third Person View Parameters")] 
     [SerializeField] private FloatVariable maxLookUp;
@@ -62,13 +67,15 @@ public class PlayerLook : MonoBehaviour
     
     private bool _isAimInput;
     
+    
+    
     [SerializeField] private Transform debugCameraForwardArrow;
     public ViewMode CurrentViewMode => currentViewMode;
     public Camera MainCamera => mainCamera;
     public GameObject CameraTargetObject
     {
-	    get => cameraTargetObject;
-	    set => cameraTargetObject = value;
+	    get => originalTargetObject;
+	    set => originalTargetObject = value;
     }
 
     private void OnEnable()
@@ -98,7 +105,7 @@ public class PlayerLook : MonoBehaviour
             mainCamera = Camera.main;
         }
         
-        _cinemachineTargetYaw = cameraTargetObject.transform.rotation.eulerAngles.y;
+        _cinemachineTargetYaw = originalTargetObject.transform.rotation.eulerAngles.y;
         
         ChangeView(currentViewMode);
         
@@ -108,7 +115,8 @@ public class PlayerLook : MonoBehaviour
     private void LateUpdate()
     {
 	    CameraRotation();
-	    Quaternion newRotation = Quaternion.Euler(debugCameraForwardArrow.rotation.eulerAngles.x, cameraTargetObject.transform.rotation.eulerAngles.y, debugCameraForwardArrow.rotation.eulerAngles.z);
+	    SmoothenTarget();
+	    Quaternion newRotation = Quaternion.Euler(debugCameraForwardArrow.rotation.eulerAngles.x, originalTargetObject.transform.rotation.eulerAngles.y, debugCameraForwardArrow.rotation.eulerAngles.z);
 	    debugCameraForwardArrow.rotation = newRotation;
     }
 
@@ -117,7 +125,18 @@ public class PlayerLook : MonoBehaviour
     {
 	    _mouseInput = input;
     }
-    
+
+    private void SmoothenTarget()
+    {
+	    _targetTargetRotation = originalTargetObject.transform.rotation;
+
+	    // Smoothly interpolate between current and target rotation
+	    _currentTargetRotation = Quaternion.Lerp(_currentTargetRotation, _targetTargetRotation, Time.deltaTime / lookSmoothTime.Value);
+
+	    // Apply the smoothed rotation to Object A
+	    delayTargetObject.transform.rotation = _currentTargetRotation;
+    }
+
     private void CameraRotation()
 	{
 		//stop look
@@ -151,7 +170,7 @@ public class PlayerLook : MonoBehaviour
 				_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, maxLookDown, maxLookUp);
 
 				// Update Cinemachine camera target pitch
-				cameraTargetObject.transform.localRotation = Quaternion.Euler(invertYLook ? _cinemachineTargetPitch : -_cinemachineTargetPitch, 0.0f, 0.0f);
+				originalTargetObject.transform.localRotation = Quaternion.Euler(invertYLook ? _cinemachineTargetPitch : -_cinemachineTargetPitch, 0.0f, 0.0f);
 				
 				// rotate the player left and right
 				transform.Rotate(Vector3.up * (invertXLook ? -_rotationVelocity : _rotationVelocity));
@@ -198,7 +217,7 @@ public class PlayerLook : MonoBehaviour
 			_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, maxLookDown, maxLookUp);
 			
 			// Cinemachine will follow this target
-			cameraTargetObject.transform.rotation = Quaternion.Euler(
+			originalTargetObject.transform.rotation = Quaternion.Euler(
 				invertYLook ? _cinemachineTargetPitch : -_cinemachineTargetPitch + cameraAngleOverride,
 				invertXLook ? -_cinemachineTargetYaw : _cinemachineTargetYaw, 0.0f);
 			
@@ -219,7 +238,7 @@ public class PlayerLook : MonoBehaviour
 			_cinemachineTargetPitch = camAngle;
 			
 			// Cinemachine will follow this target
-			cameraTargetObject.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch, _cinemachineTargetYaw, 0.0f);
+			originalTargetObject.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch, _cinemachineTargetYaw, 0.0f);
 		}
 		
 	}
@@ -241,7 +260,7 @@ public class PlayerLook : MonoBehaviour
 					
 			    //inherit rotation from tps rotation
 			    transform.rotation = Quaternion.Euler(transform.rotation.x,_cinemachineTargetYaw,transform.rotation.z);
-			    cameraTargetObject.transform.localRotation = Quaternion.Euler(invertYLook ? _cinemachineTargetPitch : -_cinemachineTargetPitch, 0.0f, 0.0f);
+			    originalTargetObject.transform.localRotation = Quaternion.Euler(invertYLook ? _cinemachineTargetPitch : -_cinemachineTargetPitch, 0.0f, 0.0f);
 			    ToggleObjects(false);
 			    break;
 		    case ViewMode.FirstPersonAiming:

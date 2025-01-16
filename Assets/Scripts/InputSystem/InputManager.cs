@@ -20,6 +20,19 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
         GameEventsManager.Instance.InputEvents.OnSetUIEvent += SetUI;
     }
 
+    private void Update()
+    {
+        if (_playerInputActions.Player.enabled)
+        {
+            Debug.Log("player action");
+        }
+        else
+        {
+            Debug.Log("ui action");
+        }
+       
+    }
+
     private void OnDisable()
     {
         GameEventsManager.Instance.InputEvents.OnSetGameEvent -= SetGameplay;
@@ -48,17 +61,12 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
         if (context.phase == InputActionPhase.Started)
         {
             GameEventsManager.Instance.InputEvents.OpenInventory();
-            SetUI();
         }
     }
     
     public void OnCloseInventory(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
-        {
-            GameEventsManager.Instance.InputEvents.CloseInventory();
-            SetGameplay();
-        }
+       
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -182,7 +190,6 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
         if (context.phase == InputActionPhase.Started)
         {
             GameEventsManager.Instance.InputEvents.Resume();
-            SetGameplay();
         }
     }
     
@@ -191,7 +198,6 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
         if (context.phase == InputActionPhase.Started)
         {
             GameEventsManager.Instance.InputEvents.Pause();
-            SetUI();
         }
     }
 

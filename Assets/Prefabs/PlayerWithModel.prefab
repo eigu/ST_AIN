@@ -569,6 +569,8 @@ MonoBehaviour:
   cameraTargetObject: {fileID: 3509525231990084185}
   maxLookUp: {fileID: 11400000, guid: d68653afbc7ebb249a300e875583c28e, type: 2}
   maxLookDown: {fileID: 11400000, guid: 09a5e4530790c1548a9878729bebfc7a, type: 2}
+  lookRotationSmoothTime: {fileID: 11400000, guid: 09d169defa34ffe4ebe1b5e710b5fe49,
+    type: 2}
   cameraAngleOverride: -7
   _tpsAimDirection: {fileID: 11400000, guid: 1524b57e35040a34cb94b65c4f4e6c35, type: 2}
   camAngle: 45

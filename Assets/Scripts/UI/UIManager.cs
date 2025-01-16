@@ -7,19 +7,23 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _guideTMP;
-    [SerializeField] private GameObject _pausePanel;
-    private Stack<GameObject> _openedPanel = new Stack<GameObject>();
+    [SerializeField] private UIPanelBase pausePanelBase;
+    private Stack<UIPanelBase> _openedPanel = new Stack<UIPanelBase>();
 
     private void OnEnable()
     {
         GameEventsManager.Instance.UIEvents.OnUpdateUIGuideTextEvent += UpdateUIGuideText;
         GameEventsManager.Instance.InputEvents.OnPauseEvent += ClosePanel;
+        GameEventsManager.Instance.UIEvents.OnOpenUIPanelEvent += AddOpenedPanel;
+        GameEventsManager.Instance.InputEvents.OnResumeEvent += ClosePanel;
     }
     
     private void OnDisable()
     {
         GameEventsManager.Instance.UIEvents.OnUpdateUIGuideTextEvent -= UpdateUIGuideText;
         GameEventsManager.Instance.InputEvents.OnPauseEvent -= ClosePanel;
+        GameEventsManager.Instance.UIEvents.OnOpenUIPanelEvent -= AddOpenedPanel;
+        GameEventsManager.Instance.InputEvents.OnResumeEvent -= ClosePanel;
     }
 
     private void UpdateUIGuideText(string text)
@@ -27,37 +31,44 @@ public class UIManager : MonoBehaviour
         _guideTMP.text = text;
     }
 
-    private void AddOpenedPanel(GameObject obj)
+    private void AddOpenedPanel(UIPanelBase obj)
     {
+        obj.gameObject.SetActive(true);
+        obj.OnOpenPanel();
+        GameEventsManager.Instance.InputEvents.SetUI();
         _openedPanel.Push(obj);
     }
 
     public void ClosePanel()
     {
+        Debug.Log("before: " + _openedPanel.Count);
+        
         if (_openedPanel.Count <= 0)
         {
-            OpenPausePanel();
+            OpenPanel(pausePanelBase);
         }
         else
         {
-            _openedPanel.Pop().SetActive(false);
+            _openedPanel.Pop().ClosePanel();
+            
+            if (_openedPanel.Count <= 0)
+            {
+                GameEventsManager.Instance.InputEvents.SetGame();
+            }
+            
         }
+
+        Debug.Log("after: " + _openedPanel.Count);
     }
 
-    private void OpenPausePanel()
+    public void OpenPanel(UIPanelBase obj)
     {
-        _pausePanel.SetActive(true);
-        GameEventsManager.Instance.UIEvents.TogglePauseMenu(true);
-        GameEventsManager.Instance.InputEvents.SetUI();
-        AddOpenedPanel(_pausePanel);
-        
+        AddOpenedPanel(obj);
     }
-    
+
     public void ClosePausePanel()
     {
         ClosePanel();
-        GameEventsManager.Instance.UIEvents.TogglePauseMenu(false);
-        GameEventsManager.Instance.InputEvents.SetGame();
     }
 
     public void OnQuitButton()
