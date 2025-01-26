@@ -20,19 +20,6 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
         GameEventsManager.Instance.InputEvents.OnSetUIEvent += SetUI;
     }
 
-    private void Update()
-    {
-        if (_playerInputActions.Player.enabled)
-        {
-            Debug.Log("player action");
-        }
-        else
-        {
-            Debug.Log("ui action");
-        }
-       
-    }
-
     private void OnDisable()
     {
         GameEventsManager.Instance.InputEvents.OnSetGameEvent -= SetGameplay;
@@ -200,7 +187,7 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
             GameEventsManager.Instance.InputEvents.Pause();
         }
     }
-
+    
     public void OnNavigation(InputAction.CallbackContext context)
     {
         //throw new System.NotImplementedException();
@@ -208,6 +195,37 @@ public class InputManager : MonoBehaviour, PlayerInputActions.IPlayerActions, Pl
 
     public void OnSelect(InputAction.CallbackContext context)
     {
-        //throw new System.NotImplementedException();
+        if (context.phase == InputActionPhase.Started)
+        {
+            GameEventsManager.Instance.InputEvents.OnSelectStart();
+        }
+        
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            GameEventsManager.Instance.InputEvents.OnSelectEnd();
+        }
+    }
+    
+    public void OnMap(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            GameEventsManager.Instance.InputEvents.OpenMap();
+        }
+    }
+
+    public void OnScroll(InputAction.CallbackContext context)
+    {
+        GameEventsManager.Instance.InputEvents.UIScroll(context.ReadValue<float>());
+    }
+    
+    public void OnMousePan(InputAction.CallbackContext context)
+    {
+        GameEventsManager.Instance.InputEvents.OnMousePan(context.ReadValue<Vector2>());
+    }
+    
+    public void OnGamepadPan(InputAction.CallbackContext context)
+    {
+        GameEventsManager.Instance.InputEvents.OnGamepadPan(context.ReadValue<Vector2>());
     }
 }

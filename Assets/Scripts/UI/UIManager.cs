@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
 
     private void AddOpenedPanel(UIPanelBase obj)
     {
-        obj.gameObject.SetActive(true);
+        obj.gameObject.SetActive(true); // this is here because OnOpenPanel will not execute if disabled (if you're thinking to put it on a UIPanelBase)
         obj.OnOpenPanel();
         GameEventsManager.Instance.InputEvents.SetUI();
         _openedPanel.Push(obj);
@@ -41,10 +41,10 @@ public class UIManager : MonoBehaviour
 
     public void ClosePanel()
     {
-        Debug.Log("before: " + _openedPanel.Count);
         
         if (_openedPanel.Count <= 0)
         {
+            //if no panel is open and back is pressed, will pause game
             OpenPanel(pausePanelBase);
         }
         else
@@ -53,12 +53,12 @@ public class UIManager : MonoBehaviour
             
             if (_openedPanel.Count <= 0)
             {
+                //if no panel is opened after pressing back, will set to game control
                 GameEventsManager.Instance.InputEvents.SetGame();
             }
             
         }
-
-        Debug.Log("after: " + _openedPanel.Count);
+        
     }
 
     public void OpenPanel(UIPanelBase obj)

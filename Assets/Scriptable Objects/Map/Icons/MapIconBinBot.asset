@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9377ffeb64ba30478a995a8ffc78ae8, type: 3}
-  m_Name: LookSmoothTime
+  m_Script: {fileID: 11500000, guid: 21809cbf2876a4642ad2082b77e48349, type: 3}
+  m_Name: MapIconBinBot
   m_EditorClassIdentifier: 
-  _value: 0
-  _readOnly: 0
-  _raiseWarning: 1
-  _isClamped: 0
-  _minClampedValue: 0
-  _maxClampedValue: 0
-  _event:
-    m_PersistentCalls:
-      m_Calls: []
+  isPlayer: 0
+  isMoving: 1
+  isRotating: 1
+  isClickable: 1
+  minimapIcon: {fileID: 21300000, guid: 69d7223ce92c78e459820f4140d8e382, type: 3}
+  iconDefaultName: Bin Bot
+  isCancelRotation: 0

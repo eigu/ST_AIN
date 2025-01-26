@@ -34,6 +34,7 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private GameObject delayTargetObject;
     private Quaternion _targetTargetRotation; // Target rotation for original Target
     private Quaternion _currentTargetRotation; // Current rotation of original Target
+    [Tooltip("0 is the snappiest, higher the value the higher the delay.")]
     [SerializeField] private FloatVariable lookSmoothTime;
     
     

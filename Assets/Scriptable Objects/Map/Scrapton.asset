@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9377ffeb64ba30478a995a8ffc78ae8, type: 3}
-  m_Name: LookSmoothTime
+  m_Script: {fileID: 11500000, guid: 136732d6e3f516647a035e461c72bd4d, type: 3}
+  m_Name: Scrapton
   m_EditorClassIdentifier: 
-  _value: 0
-  _readOnly: 0
-  _raiseWarning: 1
-  _isClamped: 0
-  _minClampedValue: 0
-  _maxClampedValue: 0
-  _event:
-    m_PersistentCalls:
-      m_Calls: []
+  mapIconPrefab: {fileID: 1428971036985989694, guid: 286b8273316d13e41b6ccc3cda7485df,
+    type: 3}

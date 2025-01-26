@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class InputEvents 
@@ -21,6 +22,15 @@ public class InputEvents
     
     public event Action OnSetUIEvent;
     public event Action OnSetGameEvent;
+    public event Action OnOpenMapEvent;
+
+    public event Action OnSelectStartEvent;
+    
+    public event Action OnSelectEndEvent;
+
+    public event Action<float> OnUIScrollEvent;
+    public event Action<Vector2> OnGamepadPanEvent;
+    public event Action<Vector2> OnMousePanEvent;
 
     public void Move(Vector2 input) => OnMoveEvent?.Invoke(input);
     public void Look(Vector2 input) => OnLookEvent?.Invoke(input);
@@ -34,6 +44,7 @@ public class InputEvents
     public void Shoot() => OnShootEvent?.Invoke();
     public void Aim(bool pressed) => OnAimEvent?.Invoke(pressed);
     public void OpenInventory() => OnOpenInventoryEvent?.Invoke();
+    public void OpenMap() => OnOpenMapEvent?.Invoke();
     public void CloseInventory() => OnCloseInventoryEvent?.Invoke();
     public void Pause() => OnPauseEvent?.Invoke();
     public void Resume() => OnResumeEvent?.Invoke();
@@ -42,4 +53,12 @@ public class InputEvents
     public void SetUI() => OnSetUIEvent?.Invoke();
     
     public void SetGame() => OnSetGameEvent?.Invoke();
+    
+    public void UIScroll(float val) => OnUIScrollEvent?.Invoke(val);
+
+    public void OnSelectStart() => OnSelectStartEvent?.Invoke();
+    public void OnSelectEnd() => OnSelectEndEvent?.Invoke();
+
+    public void OnGamepadPan(Vector2 input) => OnGamepadPanEvent?.Invoke(input);
+    public void OnMousePan(Vector2 input) => OnMousePanEvent?.Invoke(input);
 }
