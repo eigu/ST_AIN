@@ -44663,7 +44663,7 @@ MonoBehaviour:
   OnClosePanelEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1203681635}
         m_TargetAssemblyTypeName: MapManager, Assembly-CSharp
         m_MethodName: CloseMap
         m_Mode: 1
